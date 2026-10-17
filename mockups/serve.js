@@ -12,6 +12,7 @@ const files = {
   '/site/styles.css': ['site/styles.css', 'text/css; charset=utf-8'],
   '/site/app.js': ['site/app.js', 'text/javascript; charset=utf-8'],
   '/site/project.js': ['site/project.js', 'text/javascript; charset=utf-8'],
+  '/site/favicon.svg': ['site/favicon.svg', 'image/svg+xml'],
   '/projects/philips': ['site/project.html', 'text/html; charset=utf-8'],
   '/projects/india': ['site/project.html', 'text/html; charset=utf-8'],
   '/projects/rotavirus': ['site/project.html', 'text/html; charset=utf-8'],

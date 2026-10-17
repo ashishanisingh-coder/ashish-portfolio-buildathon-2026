@@ -71,3 +71,7 @@ Then open <http://localhost:4173/>.
 ## Deploy
 
 The deliverable is a static portfolio site plus its source mockup. For a static host, publish `site/`, `assets/actual/`, and the supporting files. For a container host, deploy the Docker image and expose port `4173`.
+
+## GitHub CI
+
+`.github/workflows/ci.yml` runs on pushes and pull requests to `main`. It installs from the lockfile, runs `make test`, and builds the Docker image. The case-study routes are server-backed (`/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`), so deploy the container or a host that supports the existing Node server rather than a static host that cannot rewrite those paths.

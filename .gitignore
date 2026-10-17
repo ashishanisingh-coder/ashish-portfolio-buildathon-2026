@@ -1,4 +1,5 @@
 .DS_Store
 .opencode/
+.playwright-cli/
 node_modules/
 npm-debug.log*

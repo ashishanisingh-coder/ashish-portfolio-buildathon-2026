@@ -38,6 +38,7 @@ if (render.status !== 0) {
   'site/app.js',
   'site/project.html',
   'site/project.js',
+  'site/favicon.svg',
   'assets/actual/README.md',
   'assets/actual/india/cover-hero.jpg',
   'assets/actual/india/big-picture.jpg',
