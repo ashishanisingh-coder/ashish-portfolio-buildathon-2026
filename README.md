@@ -54,8 +54,10 @@ The static site lives in:
 - `site/index.html`
 - `site/styles.css`
 - `site/app.js`
+- `site/project.html`
+- `site/project.js`
 
-All project imagery is loaded from `assets/actual/`. Replace the placeholder contact address in `site/index.html` before deployment.
+The project index now opens same-system case-study routes at `/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`. All project imagery is loaded from `assets/actual/`. Replace the placeholder contact address in `site/index.html` before deployment.
 
 ## Docker
 

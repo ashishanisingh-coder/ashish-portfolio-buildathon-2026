@@ -860,6 +860,213 @@ figcaption {
   text-transform: uppercase;
 }
 
+.project-body {
+  background: var(--paper);
+}
+
+.project-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(var(--measure), calc(100% - 3rem));
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rule);
+  padding: 2rem 0 1.4rem;
+}
+
+.project-header .brand {
+  color: var(--ink);
+}
+
+.project-header__back {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.project-header__back:hover {
+  color: var(--ink);
+}
+
+.project-detail__hero {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  width: min(var(--measure), calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 7rem 0 8rem;
+  align-items: center;
+}
+
+.project-detail__copy h1 {
+  max-width: 38rem;
+  font-size: clamp(3.3rem, 6vw, 6.2rem);
+}
+
+.project-detail__intro {
+  max-width: 26rem;
+  margin-top: 2.8rem;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.6vw, 1.6rem);
+  line-height: 1.45;
+}
+
+.project-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  margin-top: 3rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.project-detail__meta span:first-child {
+  color: var(--orange);
+}
+
+.project-detail__hero-media {
+  min-width: 0;
+}
+
+.project-detail__hero-media img {
+  width: 100%;
+  aspect-ratio: 1.55;
+  object-fit: cover;
+  border: 1rem solid #eef1ed;
+  box-shadow: var(--shadow-soft);
+}
+
+.project-body--portrait .project-detail__hero-media img {
+  width: min(100%, 30rem);
+  height: 43rem;
+  margin: 0 auto;
+  aspect-ratio: auto;
+  object-position: top center;
+}
+
+.project-detail__hero-media figcaption {
+  margin-top: 1.3rem;
+}
+
+.project-detail__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 3rem);
+  border-top: 1px solid var(--rule);
+  padding: 6rem max(1.5rem, calc((100vw - var(--measure)) / 2)) 7rem;
+  background: var(--paper-soft);
+}
+
+.project-detail__gallery[hidden] {
+  display: none;
+}
+
+.project-detail__frame {
+  min-width: 0;
+}
+
+.project-detail__frame:first-child {
+  grid-column: 1 / -1;
+}
+
+.project-detail__frame img {
+  width: 100%;
+  max-height: 42rem;
+  object-fit: cover;
+  border: 1rem solid #f7f8f3;
+  box-shadow: var(--shadow-soft);
+}
+
+.project-detail__frame figcaption {
+  margin-top: 1.2rem;
+  color: var(--cobalt);
+}
+
+.project-detail__closing {
+  min-height: 28rem;
+  padding: 7rem max(1.5rem, calc((100vw - var(--measure)) / 2)) 6rem;
+  background: var(--night);
+  color: var(--white);
+}
+
+.project-detail__closing h2 {
+  max-width: 50rem;
+  margin-top: 1rem;
+  font-size: clamp(3rem, 5.4vw, 5.7rem);
+}
+
+.project-detail__closing .text-link {
+  margin-top: 4rem;
+  border-color: rgba(251, 252, 247, 0.45);
+}
+
+@media (max-width: 760px) {
+  .project-header {
+    width: calc(100% - 3rem);
+    padding-top: 1.5rem;
+  }
+
+  .project-header__back {
+    font-size: 0.66rem;
+  }
+
+  .project-detail__hero {
+    display: block;
+    width: calc(100% - 3rem);
+    padding: 4.5rem 0 5rem;
+  }
+
+  .project-detail__intro {
+    margin-top: 2rem;
+  }
+
+  .project-detail__meta {
+    margin-top: 2.3rem;
+  }
+
+  .project-detail__hero-media {
+    margin-top: 3.5rem;
+  }
+
+  .project-detail__hero-media img {
+    border-width: 0.55rem;
+  }
+
+  .project-body--portrait .project-detail__hero-media img {
+    width: min(100%, 19rem);
+    height: 34rem;
+  }
+
+  .project-detail__gallery {
+    display: block;
+    padding-top: 4rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .project-detail__frame + .project-detail__frame {
+    margin-top: 3rem;
+  }
+
+  .project-detail__frame img {
+    border-width: 0.55rem;
+  }
+
+  .project-detail__closing {
+    min-height: 24rem;
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
 @media (max-width: 1100px) {
   .hero {
     min-height: 50rem;
