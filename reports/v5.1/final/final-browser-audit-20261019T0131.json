@@ -1,0 +1,594 @@
+{
+  "stamp": "20261019T0131",
+  "origin": "http://127.0.0.1:4184",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900
+    },
+    "tablet": {
+      "width": 1024,
+      "height": 900
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "routes": {
+    "home": "/v5.1/",
+    "philips": "/v5.1/projects/philips/",
+    "india": "/v5.1/projects/india/",
+    "rotavirus": "/v5.1/projects/rotavirus/",
+    "uno": "/v5.1/projects/uno/"
+  },
+  "results": [
+    {
+      "key": "home",
+      "viewport": "desktop",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 4,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": null
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "key": "philips",
+      "viewport": "desktop",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 2,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/philips/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/philips/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 5
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "4"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Philips",
+        "heroNaturalWidth": 1024,
+        "heroRenderedWidth": 261.59375,
+        "stripNaturalWidth": 1024,
+        "stripRenderedWidth": 261.59375
+      }
+    },
+    {
+      "key": "india",
+      "viewport": "desktop",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 7,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/india/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/india/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 5
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "4"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "India",
+        "heroNaturalWidth": 1672,
+        "heroRenderedWidth": 547.15625,
+        "stripNaturalWidth": null,
+        "stripRenderedWidth": null
+      }
+    },
+    {
+      "key": "rotavirus",
+      "viewport": "desktop",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 5,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/rotavirus/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/rotavirus/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 4
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "1"
+        },
+        {
+          "label": "end",
+          "active": "3"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Rotavirus",
+        "heroNaturalWidth": 1672,
+        "heroRenderedWidth": 547.15625,
+        "stripNaturalWidth": null,
+        "stripRenderedWidth": null
+      }
+    },
+    {
+      "key": "uno",
+      "viewport": "desktop",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 2,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/uno/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/uno/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 4
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "1"
+        },
+        {
+          "label": "end",
+          "active": "3"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Uno",
+        "heroNaturalWidth": 261,
+        "heroRenderedWidth": 261.59375,
+        "stripNaturalWidth": 261,
+        "stripRenderedWidth": 261.59375
+      }
+    },
+    {
+      "key": "home",
+      "viewport": "tablet",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 4,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": null
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "key": "philips",
+      "viewport": "tablet",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 2,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/philips/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/philips/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 5
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "4"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Philips",
+        "heroNaturalWidth": 1024,
+        "heroRenderedWidth": 261.59375,
+        "stripNaturalWidth": 1024,
+        "stripRenderedWidth": 261.59375
+      }
+    },
+    {
+      "key": "india",
+      "viewport": "tablet",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 7,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/india/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/india/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 5
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "4"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "India",
+        "heroNaturalWidth": 1672,
+        "heroRenderedWidth": 389.09375,
+        "stripNaturalWidth": null,
+        "stripRenderedWidth": null
+      }
+    },
+    {
+      "key": "rotavirus",
+      "viewport": "tablet",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 5,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/rotavirus/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/rotavirus/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 4
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "1"
+        },
+        {
+          "label": "end",
+          "active": "3"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Rotavirus",
+        "heroNaturalWidth": 1672,
+        "heroRenderedWidth": 389.09375,
+        "stripNaturalWidth": null,
+        "stripRenderedWidth": null
+      }
+    },
+    {
+      "key": "uno",
+      "viewport": "tablet",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 2,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/uno/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/uno/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 4
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "3"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Uno",
+        "heroNaturalWidth": 261,
+        "heroRenderedWidth": 261.59375,
+        "stripNaturalWidth": 261,
+        "stripRenderedWidth": 261.59375
+      }
+    },
+    {
+      "key": "home",
+      "viewport": "mobile",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 4,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": null
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "key": "philips",
+      "viewport": "mobile",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 2,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/philips/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/philips/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 5
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "4"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Philips",
+        "heroNaturalWidth": 1024,
+        "heroRenderedWidth": 261.59375,
+        "stripNaturalWidth": 1024,
+        "stripRenderedWidth": 261.59375
+      }
+    },
+    {
+      "key": "india",
+      "viewport": "mobile",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 7,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/india/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/india/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 5
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "4"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "India",
+        "heroNaturalWidth": 1672,
+        "heroRenderedWidth": 354.8125,
+        "stripNaturalWidth": null,
+        "stripRenderedWidth": null
+      }
+    },
+    {
+      "key": "rotavirus",
+      "viewport": "mobile",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 5,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/rotavirus/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/rotavirus/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 4
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "3"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Rotavirus",
+        "heroNaturalWidth": 1672,
+        "heroRenderedWidth": 354.8125,
+        "stripNaturalWidth": null,
+        "stripRenderedWidth": null
+      }
+    },
+    {
+      "key": "uno",
+      "viewport": "mobile",
+      "snapshot": {
+        "ready": "complete",
+        "h1": 1,
+        "imageCount": 2,
+        "unloadedImages": 0,
+        "missingAlt": 0,
+        "duplicateIds": [],
+        "overflow": false,
+        "canonical": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/uno/",
+        "ogUrl": "https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/projects/uno/",
+        "twitterCard": "summary_large_image",
+        "devWording": false,
+        "mailto": false,
+        "beatCount": 4
+      },
+      "errors": [],
+      "failedRequests": [],
+      "checkpoints": [
+        {
+          "label": "start",
+          "active": "0"
+        },
+        {
+          "label": "middle",
+          "active": "2"
+        },
+        {
+          "label": "end",
+          "active": "3"
+        }
+      ],
+      "routeInfo": {
+        "activeProject": "Uno",
+        "heroNaturalWidth": 261,
+        "heroRenderedWidth": 261.59375,
+        "stripNaturalWidth": 261,
+        "stripRenderedWidth": 261.59375
+      }
+    }
+  ]
+}
