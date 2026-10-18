@@ -76,3 +76,12 @@ The final live-site screenshots are generated in `reports/qa/` and intentionally
 - Review the live URL and screenshots before Buildathon submission.
 - Decide whether to publish a personal contact method later; none is currently exposed.
 - Submit the Buildathon entry manually only after review. No submission action was taken by OmniRush.
+
+## Buildathon submission draft — not submitted
+
+- **Project title:** The Fold — Ashish Kumar Singh Portfolio
+- **Description:** A dark-to-light editorial portfolio for presentation, information, and visual systems. The experience opens with a realistic folded folio and then moves through a Philips TV & Audio lead spread, India in Transition, Rotavirus, and Simulanis Uno using the supplied project assets and a restrained case-study rhythm.
+- **GitHub URL:** https://github.com/ashishanisingh-coder/ashish-portfolio-buildathon-2026
+- **Live demo URL:** https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/
+- **Technical summary:** Semantic HTML, responsive CSS, vanilla browser JavaScript, actual local project assets, Node 24.20.0, an offline `make test` flow, Docker, GitHub Actions CI, and GitHub Pages deployment with generated base-path-safe route indexes.
+- **Submission status:** Prepared for review; not submitted.
