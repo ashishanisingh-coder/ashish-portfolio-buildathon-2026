@@ -7,14 +7,61 @@ const routes = [
   '/v5.1/app.js',
   '/v5.1/favicon.svg',
   '/assets/actual/philips/case-study.jpg',
+  '/v5.1/projects/india',
+  '/v5.1/projects/india/',
+  '/v5.1/projects/rotavirus',
+  '/v5.1/projects/rotavirus/',
+  '/v5.1/projects/uno',
+  '/v5.1/projects/uno/',
+  '/v5.1/projects/project.css',
+  '/v5.1/projects/project.js',
 ];
 
 const origin = `http://127.0.0.1:${process.env.PORT || 4184}`;
+
+const projectRoutes = {
+  india: {
+    paths: ['/v5.1/projects/india', '/v5.1/projects/india/'],
+    name: 'India in Transition',
+    assets: [
+      '/assets/actual/india/cover-hero.jpg',
+      '/assets/actual/india/big-picture.jpg',
+      '/assets/actual/india/work-system-wide.png',
+      '/assets/actual/india/work-system-tall.png',
+      '/assets/actual/india/geography-map.jpg',
+      '/assets/actual/india/synthesis-montage.jpg',
+      '/assets/actual/india/closing-bridge.jpg',
+    ],
+  },
+  rotavirus: {
+    paths: ['/v5.1/projects/rotavirus', '/v5.1/projects/rotavirus/'],
+    name: 'Rotavirus',
+    assets: [
+      '/assets/actual/rotavirus/cover.jpg',
+      '/assets/actual/rotavirus/overview.jpg',
+      '/assets/actual/rotavirus/slide-archive.jpg',
+      '/assets/actual/rotavirus/takeaways.png',
+      '/assets/actual/rotavirus/closing.jpg',
+    ],
+  },
+  uno: {
+    paths: ['/v5.1/projects/uno', '/v5.1/projects/uno/'],
+    name: 'Simulanis Uno',
+    assets: ['/assets/actual/uno/case-study.jpg'],
+  },
+};
 
 async function main() {
   for (const route of routes) {
     const response = await fetch(`${origin}${route}`);
     if (!response.ok) throw new Error(`${route}: HTTP ${response.status}`);
+  }
+
+  for (const slug of ['not-allowlisted', 'toString']) {
+    const missingProject = await fetch(`${origin}/v5.1/projects/${slug}`);
+    if (missingProject.status !== 404) {
+      throw new Error(`Unallowlisted project route ${slug} returned HTTP ${missingProject.status}`);
+    }
   }
 
   const html = await (await fetch(`${origin}/`)).text();
@@ -44,7 +91,45 @@ async function main() {
     if (css.includes(bannedToken)) throw new Error(`Flat Signal CSS contains banned token: ${bannedToken}`);
   }
 
-  console.log(`Flat Signal smoke test passed (${routes.length} routes).`);
+  const projectCss = await (await fetch(`${origin}/v5.1/projects/project.css`)).text();
+  for (const bannedToken of [
+    'linear-gradient',
+    'radial-gradient',
+    'box-shadow',
+    'rotate',
+    'translate3d',
+    'mono',
+  ]) {
+    if (projectCss.toLowerCase().includes(bannedToken)) {
+      throw new Error(`Project route CSS contains banned token: ${bannedToken}`);
+    }
+  }
+  if (/font-family\s*:[^;]*(?<!sans-)serif\b/i.test(projectCss)) {
+    throw new Error('Project route CSS contains a serif font declaration');
+  }
+
+  for (const project of Object.values(projectRoutes)) {
+    const html = await (await fetch(`${origin}${project.paths[0]}`)).text();
+    if (!html.includes(project.name)) throw new Error(`Project route is missing name: ${project.name}`);
+    for (const marker of [
+      'Skip to content',
+      '<main id="main-content"',
+      'Back to work',
+      'data-project-sequence',
+      'data-progress-readout',
+      '/v5.1/projects/project.css',
+      '/v5.1/projects/project.js',
+    ]) {
+      if (!html.includes(marker)) throw new Error(`${project.name} route is missing marker: ${marker}`);
+    }
+
+    for (const asset of project.assets) {
+      const response = await fetch(`${origin}${asset}`, { method: 'HEAD' });
+      if (!response.ok) throw new Error(`${project.name} asset ${asset}: HTTP ${response.status}`);
+    }
+  }
+
+  console.log(`Flat Signal smoke test passed (${routes.length} routes, ${Object.keys(projectRoutes).length} project systems).`);
 }
 
 main().catch((error) => {

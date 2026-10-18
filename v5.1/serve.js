@@ -4,6 +4,8 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 const { URL } = require('node:url');
+const projectData = require('./projects/project-data');
+const { renderProject } = require('./projects/project-template');
 
 const ROOT = path.resolve(__dirname, '..');
 const V51_ROOT = path.join(ROOT, 'v5.1');
@@ -60,6 +62,22 @@ function sendFile(response, filePath, method) {
   });
 }
 
+function sendHtml(response, html, method) {
+  const body = Buffer.from(html, 'utf8');
+  response.writeHead(200, {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'text/html; charset=utf-8',
+    'Content-Length': body.length,
+  });
+
+  if (method === 'HEAD') {
+    response.end();
+    return;
+  }
+
+  response.end(body);
+}
+
 const server = http.createServer((request, response) => {
   let parsedUrl;
   try {
@@ -73,6 +91,20 @@ const server = http.createServer((request, response) => {
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     response.writeHead(405, { Allow: 'GET, HEAD' });
     response.end('Method not allowed');
+    return;
+  }
+
+  const projectMatch = parsedUrl.pathname.match(/^\/v5\.1\/projects\/([a-z0-9-]+)\/?$/);
+  if (projectMatch) {
+    const projectSlug = projectMatch[1];
+    const project = Object.prototype.hasOwnProperty.call(projectData, projectSlug)
+      ? projectData[projectSlug]
+      : null;
+    if (!project) {
+      respondNotFound(response);
+      return;
+    }
+    sendHtml(response, renderProject(project), request.method);
     return;
   }
 
