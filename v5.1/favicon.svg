@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Ashish Kumar Singh mark</title>
+  <desc id="desc">A flat orange signal mark on a dark field.</desc>
+  <rect width="64" height="64" fill="#171c1e" />
+  <path d="M15 18h34M15 32h23M15 46h34" fill="none" stroke="#ff6334" stroke-width="4" />
+</svg>
