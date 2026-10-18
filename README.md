@@ -57,7 +57,7 @@ The static site lives in:
 - `site/project.html`
 - `site/project.js`
 
-The project index now opens same-system case-study routes at `/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`. All project imagery is loaded from `assets/actual/`. Replace the placeholder contact address in `site/index.html` before deployment.
+The project index now opens same-system case-study routes at `/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`. All project imagery is loaded from `assets/actual/`. The public build keeps contact details unpublished and exposes an honest request-state CTA without inventing an email address.
 
 ## Docker
 
@@ -70,8 +70,39 @@ Then open <http://localhost:4173/>.
 
 ## Deploy
 
-The deliverable is a static portfolio site plus its source mockup. For a static host, publish `site/`, `assets/actual/`, and the supporting files. For a container host, deploy the Docker image and expose port `4173`.
+### GitHub Pages
+
+The repository includes a reproducible project-site build for free GitHub Pages hosting:
+
+```bash
+npm run build:static
+```
+
+The command removes and recreates `dist/`, copies the contents of `site/` to the artifact root, copies `assets/actual/`, creates these directory-index case-study pages, and rewrites the existing root-absolute internal URLs for the repository base path:
+
+- `/projects/philips/index.html`
+- `/projects/india/index.html`
+- `/projects/rotavirus/index.html`
+- `/projects/uno/index.html`
+
+The default base path is `/ashish-portfolio-buildathon-2026/`. For a different repository name, override it during the build:
+
+```bash
+BASE_PATH=/your-repository-name/ npm run build:static
+```
+
+The `.github/workflows/pages.yml` workflow runs the offline checks, builds `dist/`, uploads it as a Pages artifact, and deploys it on pushes to `main` or from **Actions → Deploy portfolio to GitHub Pages → Run workflow**. In the repository's **Settings → Pages**, select **GitHub Actions** as the build and deployment source once. The published project-site URL is:
+
+```text
+https://<owner>.github.io/ashish-portfolio-buildathon-2026/
+```
+
+GitHub Pages serves static files only. The generated directory indexes make the four known case-study URLs work without a server rewrite, but arbitrary unknown routes and Node server behavior are not available there. The Pages REST API exposes site creation, but that endpoint requires repository-admin, maintainer, or **manage GitHub Pages settings** permission; the workflow token cannot grant that permission. An owner or administrator must enable the GitHub Actions Pages source once in repository settings (or provision it separately with an appropriately privileged token).
+
+### Container host
+
+For a container host, deploy the Docker image and expose port `4173`. The existing Node server remains the Docker/preview path and keeps its current routes.
 
 ## GitHub CI
 
-`.github/workflows/ci.yml` runs on pushes and pull requests to `main`. It installs from the lockfile, runs `make test`, and builds the Docker image. The case-study routes are server-backed (`/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`), so deploy the container or a host that supports the existing Node server rather than a static host that cannot rewrite those paths.
+`.github/workflows/ci.yml` runs on pushes and pull requests to `main`. It installs from the lockfile, runs `make test`, and builds the Docker image. The Node server keeps the case-study routes (`/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`) for container/preview use; `.github/workflows/pages.yml` supplies equivalent directory-index pages for the static GitHub Pages artifact.

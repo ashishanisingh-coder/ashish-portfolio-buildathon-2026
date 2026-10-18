@@ -2,4 +2,6 @@
 .opencode/
 .playwright-cli/
 node_modules/
+dist/
+reports/qa/
 npm-debug.log*

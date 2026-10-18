@@ -1,3 +1,7 @@
+document.documentElement.classList.add('motion-ready');
+
+const PROJECT_ORDER = ['philips', 'india', 'rotavirus', 'uno'];
+
 const PROJECTS = {
   philips: {
     name: 'Philips TV & Audio',
@@ -6,6 +10,7 @@ const PROJECTS = {
     type: 'Visual communication',
     title: 'A visual system that travels.',
     intro: 'Campaign language shaped across screen, shelf, strip and the point of purchase.',
+    metaDescription: 'Campaign language shaped across screen, shelf, strip and the point of purchase.',
     hero: '/assets/actual/philips/case-study.jpg',
     heroAlt: 'Philips TV and Audio campaign case study spread',
     caption: 'Supplied asset / Philips TV & Audio campaign case study',
@@ -19,6 +24,7 @@ const PROJECTS = {
     type: 'Editorial communication',
     title: 'A country through everyday life.',
     intro: 'A large editorial system for six ways of seeing India in transition.',
+    metaDescription: 'A large editorial system for six ways of seeing India in transition.',
     hero: '/assets/actual/india/cover-hero.jpg',
     heroAlt: 'India in Transition project cover',
     caption: 'Supplied source frame / cover direction',
@@ -36,6 +42,7 @@ const PROJECTS = {
     type: 'Data storytelling',
     title: 'Make complexity readable.',
     intro: 'Information design for a public-health story that needs a clear way in.',
+    metaDescription: 'Information design for a public-health story that needs a clear way in.',
     hero: '/assets/actual/rotavirus/cover.jpg',
     heroAlt: 'Rotavirus campaign cover about vaccine access',
     caption: 'Supplied source frame / campaign story',
@@ -53,6 +60,7 @@ const PROJECTS = {
     type: 'Experience design',
     title: 'One unified platform.',
     intro: 'Industrial training for a safer, smarter tomorrow.',
+    metaDescription: 'Industrial training for a safer, smarter tomorrow.',
     hero: '/assets/actual/uno/case-study.jpg',
     heroAlt: 'Simulanis Uno 17-slide case study strip',
     caption: 'Supplied 17-slide case study strip',
@@ -70,11 +78,100 @@ function escapeHTML(value) {
     .replace(/"/g, '&quot;');
 }
 
-const slug = window.location.pathname.split('/').filter(Boolean).pop() || 'philips';
-const project = PROJECTS[slug] || PROJECTS.philips;
+function getSiteBasePath() {
+  const pathname = window.location.pathname;
+  const projectMarker = ['', 'projects', ''].join('/');
+  const projectIndex = pathname.indexOf(projectMarker);
+
+  if (projectIndex >= 0) {
+    return pathname.slice(0, projectIndex).replace(/\/+$/, '');
+  }
+
+  if (pathname === '/') return '';
+  if (pathname.endsWith('/')) return pathname.slice(0, -1);
+  if (pathname.startsWith('/site/')) return '';
+  return pathname.slice(0, pathname.lastIndexOf('/')).replace(/\/+$/, '');
+}
+
+function siteUrl(pathname) {
+  const basePath = getSiteBasePath();
+  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return `${window.location.origin}${basePath}${normalizedPath}`;
+}
+
+function getProjectSlug() {
+  const projectMarker = ['', 'projects', ''].join('/');
+  const projectIndex = window.location.pathname.indexOf(projectMarker);
+  if (projectIndex < 0) return 'philips';
+
+  const routePart = window.location.pathname.slice(projectIndex + projectMarker.length);
+  const routeSlug = routePart.split('/').filter(Boolean)[0];
+  return PROJECTS[routeSlug] ? routeSlug : 'philips';
+}
+
+function setProjectMeta(name, content) {
+  const element = document.querySelector(`[data-project-meta="${name}"]`);
+  if (element) element.setAttribute('content', content);
+}
+
+function setProjectLink(link, label, targetSlug, direction) {
+  if (!link) return;
+
+  const target = targetSlug ? PROJECTS[targetSlug] : null;
+  if (!target) {
+    link.hidden = true;
+    link.removeAttribute('aria-label');
+    return;
+  }
+
+  link.hidden = false;
+  link.href = siteUrl(`projects/${targetSlug}`);
+  link.setAttribute('aria-label', `${direction}: ${target.name}`);
+  if (label) label.textContent = target.name;
+}
+
+function revealContent() {
+  const targets = [...document.querySelectorAll('[data-reveal]')];
+  if (targets.length === 0) return;
+
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    targets.forEach((target) => target.classList.add('is-revealed'));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: '0px 0px -10% 0px', threshold: 0.08 },
+  );
+
+  targets.forEach((target) => revealObserver.observe(target));
+}
+
+const slug = getProjectSlug();
+const project = PROJECTS[slug];
+const projectUrl = siteUrl(`projects/${slug}`);
+const projectImageUrl = new URL(project.hero, document.baseURI).href;
 
 document.title = `${project.name} — Ashish Kumar Singh`;
 document.body.classList.toggle('project-body--portrait', Boolean(project.portrait));
+
+document.querySelector('[data-project-canonical]')?.setAttribute('href', projectUrl);
+setProjectMeta('description', project.metaDescription);
+setProjectMeta('og:title', `${project.name} — Ashish Kumar Singh`);
+setProjectMeta('og:description', project.metaDescription);
+setProjectMeta('og:url', projectUrl);
+setProjectMeta('og:image', projectImageUrl);
+setProjectMeta('og:image:alt', project.heroAlt);
+setProjectMeta('twitter:title', `${project.name} — Ashish Kumar Singh`);
+setProjectMeta('twitter:description', project.metaDescription);
+setProjectMeta('twitter:image', projectImageUrl);
 
 document.querySelector('[data-project-kicker]').textContent = project.kicker;
 document.querySelector('[data-project-title]').textContent = project.title;
@@ -95,10 +192,26 @@ if (project.frames.length === 0) {
   gallery.innerHTML = project.frames
     .map(
       (frame) => `
-        <figure class="project-detail__frame">
-          <img src="${escapeHTML(frame.src)}" alt="${escapeHTML(frame.alt)}" loading="lazy" />
+        <figure class="project-detail__frame" data-reveal>
+          <img src="${escapeHTML(frame.src)}" alt="${escapeHTML(frame.alt)}" loading="lazy" decoding="async" />
           <figcaption>${escapeHTML(frame.label)}</figcaption>
         </figure>`,
     )
     .join('');
 }
+
+const projectIndex = PROJECT_ORDER.indexOf(slug);
+setProjectLink(
+  document.querySelector('[data-project-previous]'),
+  document.querySelector('[data-project-previous-name]'),
+  projectIndex > 0 ? PROJECT_ORDER[projectIndex - 1] : null,
+  'Open previous project',
+);
+setProjectLink(
+  document.querySelector('[data-project-next]'),
+  document.querySelector('[data-project-next-name]'),
+  projectIndex < PROJECT_ORDER.length - 1 ? PROJECT_ORDER[projectIndex + 1] : null,
+  'Open next project',
+);
+
+revealContent();

@@ -4,6 +4,7 @@
   "private": true,
   "description": "Reproducible source and rendered mockups for Ashish Kumar Singh's Fold portfolio direction.",
   "scripts": {
+    "build:static": "node scripts/build-static.js",
     "render": "node mockups/render-fold-v3.js",
     "test": "node mockups/test.js",
     "serve": "node mockups/serve.js"
