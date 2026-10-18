@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Signal to Story — an un-deployed V4 homepage prototype for Ashish Kumar Singh."
+    />
+    <meta name="theme-color" content="#0b0f10" />
+    <title>Signal to Story — V4 prototype</title>
+    <link rel="icon" href="/v4/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/v4/styles.css" />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <script src="/v4/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="prototype-banner" role="status">
+      <span class="prototype-banner__mark" aria-hidden="true"></span>
+      <span>V4 prototype</span>
+      <span aria-hidden="true">/</span>
+      <span>not deployed</span>
+    </div>
+
+    <header class="site-header">
+      <a class="wordmark" href="#opening-signal" aria-label="Ashish Kumar Singh home">
+        <span class="wordmark__name">Ashish Kumar Singh</span>
+        <span class="wordmark__role">Visual communication / systems</span>
+      </a>
+      <p class="header-note">Signal to Story</p>
+      <a class="header-link" href="#closing-signal">Start a conversation <span aria-hidden="true">↘</span></a>
+    </header>
+
+    <nav class="chapter-rail" aria-label="Homepage chapters" data-chapter-rail>
+      <div class="chapter-rail__track" aria-hidden="true">
+        <span class="chapter-rail__progress" data-rail-progress></span>
+      </div>
+      <ol class="chapter-rail__list">
+        <li>
+          <button
+            class="chapter-button is-active"
+            type="button"
+            data-chapter-target="opening-signal"
+            aria-label="Go to opening signal chapter"
+            aria-current="location"
+          >
+            <span class="chapter-button__number">01</span>
+            <span class="chapter-button__label">Opening signal</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="chapter-button"
+            type="button"
+            data-chapter-target="working-surface"
+            aria-label="Go to working surface chapter"
+          >
+            <span class="chapter-button__number">02</span>
+            <span class="chapter-button__label">Working surface</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="chapter-button"
+            type="button"
+            data-chapter-target="method"
+            aria-label="Go to method chapter"
+          >
+            <span class="chapter-button__number">03</span>
+            <span class="chapter-button__label">Method / story</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="chapter-button"
+            type="button"
+            data-chapter-target="closing-signal"
+            aria-label="Go to closing contact chapter"
+          >
+            <span class="chapter-button__number">04</span>
+            <span class="chapter-button__label">Closing contact</span>
+          </button>
+        </li>
+      </ol>
+      <p class="chapter-rail__current" aria-live="polite">
+        <span data-current-chapter>01</span>
+        <span data-current-label>Opening signal</span>
+      </p>
+    </nav>
+
+    <main id="main-content">
+      <section
+        class="hero chapter-section"
+        id="opening-signal"
+        data-chapter-section
+        aria-labelledby="hero-title"
+      >
+        <div class="hero__guide hero__guide--top" aria-hidden="true"><span></span></div>
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Opening signal</p>
+            <h1 id="hero-title">
+              I turn complex ideas into visual systems people can
+              <span class="hero__signal-word">move through.</span>
+            </h1>
+            <p class="hero__intro">
+              Presentation, information and experience design for stories that need structure before they need more noise.
+            </p>
+            <div class="hero__actions">
+              <a class="text-link text-link--light" href="#working-surface">
+                Enter the working surface <span aria-hidden="true">↘</span>
+              </a>
+              <p class="hero__note">Four real projects / one continuous signal</p>
+            </div>
+          </div>
+
+          <div class="hero__visual">
+            <div class="hero__guide hero__guide--side" aria-hidden="true"><span></span></div>
+            <figure class="signal-mat">
+              <span class="mat-crop mat-crop--tl" aria-hidden="true"></span>
+              <span class="mat-crop mat-crop--tr" aria-hidden="true"></span>
+              <span class="mat-crop mat-crop--bl" aria-hidden="true"></span>
+              <span class="mat-crop mat-crop--br" aria-hidden="true"></span>
+              <div class="signal-mat__topline">
+                <span>AS / 01</span>
+                <span>Signal study / Philips</span>
+              </div>
+              <div class="signal-mat__image-wrap">
+                <img
+                  src="../assets/actual/philips/case-study.jpg"
+                  alt="Philips TV and Audio campaign case study spread"
+                />
+              </div>
+              <figcaption>
+                <span>Image mat / supplied project material</span>
+                <span>01—08</span>
+              </figcaption>
+            </figure>
+            <p class="hero__visual-note">The line is the invitation. The material does the explaining.</p>
+          </div>
+        </div>
+        <div class="hero__footer">
+          <span>Scroll to trace the sequence</span>
+          <span>01 / 04</span>
+        </div>
+      </section>
+
+      <section
+        class="working-surface chapter-section"
+        id="working-surface"
+        data-chapter-section
+        aria-labelledby="surface-title"
+      >
+        <div class="section-rule">
+          <span>02 / The working surface</span>
+          <span>Four ways to make an idea hold</span>
+        </div>
+        <div class="surface-intro">
+          <div>
+            <p class="eyebrow eyebrow--dark"><span class="eyebrow__rule" aria-hidden="true"></span>Project stage</p>
+            <h2 id="surface-title">One practice.<br /><em>Four temperatures.</em></h2>
+          </div>
+          <p class="surface-intro__copy">
+            The surface changes with the story: campaign language, editorial rhythm, public-health clarity, or a system built to be used.
+          </p>
+        </div>
+
+        <div class="stage-layout">
+          <div class="project-index">
+            <div class="project-index__heading">
+              <span>Project index</span>
+              <span data-stage-count>01 / 04</span>
+            </div>
+            <ul class="project-list" role="list" aria-label="Select a project to change the project stage">
+              <li>
+                <button
+                  class="project-item is-active"
+                  type="button"
+                  data-project-key="philips"
+                  aria-controls="stage-panel"
+                  aria-pressed="true"
+                >
+                  <span class="project-item__number">01</span>
+                  <span class="project-item__text">
+                    <strong>Philips TV &amp; Audio</strong>
+                    <small>Campaign system</small>
+                  </span>
+                  <span class="project-item__marker" aria-hidden="true">↗</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="project-item"
+                  type="button"
+                  data-project-key="india"
+                  aria-controls="stage-panel"
+                  aria-pressed="false"
+                >
+                  <span class="project-item__number">02</span>
+                  <span class="project-item__text">
+                    <strong>India in Transition</strong>
+                    <small>Editorial system</small>
+                  </span>
+                  <span class="project-item__marker" aria-hidden="true">↗</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="project-item"
+                  type="button"
+                  data-project-key="rotavirus"
+                  aria-controls="stage-panel"
+                  aria-pressed="false"
+                >
+                  <span class="project-item__number">03</span>
+                  <span class="project-item__text">
+                    <strong>Rotavirus</strong>
+                    <small>Information design</small>
+                  </span>
+                  <span class="project-item__marker" aria-hidden="true">↗</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  class="project-item"
+                  type="button"
+                  data-project-key="uno"
+                  aria-controls="stage-panel"
+                  aria-pressed="false"
+                >
+                  <span class="project-item__number">04</span>
+                  <span class="project-item__text">
+                    <strong>Simulanis Uno</strong>
+                    <small>Experience design</small>
+                  </span>
+                  <span class="project-item__marker" aria-hidden="true">↗</span>
+                </button>
+              </li>
+            </ul>
+            <p class="project-index__hint">Use the index or arrow keys to change the stage.</p>
+          </div>
+
+          <div class="stage-panel" id="stage-panel" aria-live="polite">
+            <figure class="stage-figure">
+              <span class="stage-figure__crop stage-figure__crop--tl" aria-hidden="true"></span>
+              <span class="stage-figure__crop stage-figure__crop--br" aria-hidden="true"></span>
+              <div class="stage-figure__topline">
+                <span data-stage-discipline>Campaign system</span>
+                <span data-stage-page>01 / 08</span>
+              </div>
+              <div class="stage-figure__image-wrap">
+                <img
+                  data-stage-image
+                  src="../assets/actual/philips/case-study.jpg"
+                  alt="Philips TV and Audio campaign case study spread"
+                />
+              </div>
+              <figcaption>
+                <span data-stage-caption>Supplied case-study material</span>
+                <span data-stage-frame>Frame 01</span>
+              </figcaption>
+            </figure>
+            <div class="stage-copy">
+              <div class="stage-copy__meta">
+                <span data-stage-discipline-copy>Campaign system</span>
+                <span class="stage-status" data-stage-status>Archival case study</span>
+              </div>
+              <h3 id="stage-title">Philips TV &amp; Audio</h3>
+              <p data-stage-summary>
+                A campaign sequence that carries Philips TV &amp; Audio from room-scale images into print, social, retail and catalogue formats.
+              </p>
+              <p class="stage-copy__source" data-stage-source>Actual project asset / state shown: supplied source frame</p>
+              <a class="text-link text-link--dark" href="#method">
+                Trace the method <span aria-hidden="true">↘</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="signal-path signal-path--surface" aria-hidden="true">
+          <span class="signal-path__line"></span>
+          <span class="signal-path__dot"></span>
+          <span class="signal-path__label">signal / 01 → 04</span>
+        </div>
+      </section>
+
+      <section class="method chapter-section" id="method" data-chapter-section aria-labelledby="method-title">
+        <div class="section-rule section-rule--dark">
+          <span>03 / Method / story</span>
+          <span>Structure before spectacle</span>
+        </div>
+        <div class="method-intro">
+          <div>
+            <p class="eyebrow eyebrow--light"><span class="eyebrow__rule" aria-hidden="true"></span>Visual walkthrough</p>
+            <h2 id="method-title">A project is a sequence of <em>decisions.</em></h2>
+          </div>
+          <p>
+            I work from the inside out: find the signal, give it a structure, then make the structure carry its own weight.
+          </p>
+        </div>
+
+        <ol class="walkthrough" aria-label="Three stages of the working method">
+          <li class="walkthrough-step">
+            <div class="walkthrough-step__marker"><span>01</span></div>
+            <figure class="walkthrough-step__image">
+              <span class="walkthrough-step__crop" aria-hidden="true"></span>
+              <img
+                src="../assets/actual/india/synthesis-montage.jpg"
+                alt="India in Transition synthesis montage"
+                loading="lazy"
+              />
+              <figcaption>Source frame / synthesis</figcaption>
+            </figure>
+            <div class="walkthrough-step__copy">
+              <h3>Distill</h3>
+              <p>Separate the signal from the material around it.</p>
+            </div>
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step__marker"><span>02</span></div>
+            <figure class="walkthrough-step__image">
+              <span class="walkthrough-step__crop" aria-hidden="true"></span>
+              <img
+                src="../assets/actual/rotavirus/overview.jpg"
+                alt="Rotavirus information design overview"
+                loading="lazy"
+              />
+              <figcaption>Source frame / information</figcaption>
+            </figure>
+            <div class="walkthrough-step__copy">
+              <h3>Structure</h3>
+              <p>Build a visual order people can enter without instructions.</p>
+            </div>
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step__marker"><span>03</span></div>
+            <figure class="walkthrough-step__image">
+              <span class="walkthrough-step__crop" aria-hidden="true"></span>
+              <img
+                src="../assets/actual/uno/case-study.jpg"
+                alt="Simulanis Uno case study strip showing product screens"
+                loading="lazy"
+              />
+              <figcaption>Source frame / delivery</figcaption>
+            </figure>
+            <div class="walkthrough-step__copy">
+              <h3>Deliver</h3>
+              <p>Make the system repeatable across the places the story must land.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="method-footer">
+          <span>Working rule</span>
+          <p>Make the structure visible before adding more.</p>
+        </div>
+      </section>
+
+      <section
+        class="closing-signal chapter-section"
+        id="closing-signal"
+        data-chapter-section
+        aria-labelledby="closing-title"
+      >
+        <div class="closing-signal__top section-rule section-rule--dark">
+          <span>04 / Closing contact</span>
+          <span>Open channel / public profile</span>
+        </div>
+        <div class="closing-signal__layout">
+          <div>
+            <p class="eyebrow eyebrow--light"><span class="eyebrow__rule" aria-hidden="true"></span>Closing signal</p>
+            <h2 id="closing-title">Give an idea somewhere to <em>hold.</em></h2>
+          </div>
+          <div class="closing-signal__copy">
+            <p>If the story is complex, the structure can still feel clear. Start with the public profile and ask for the next step.</p>
+            <div class="closing-signal__actions">
+              <a
+                class="contact-link"
+                href="https://github.com/ashishanisingh-coder"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open public GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <button
+                class="contact-request"
+                type="button"
+                data-contact-cta
+                aria-expanded="false"
+                aria-controls="contact-disclosure"
+              >
+                <span>Contact details on request</span>
+                <span aria-hidden="true" data-contact-symbol>+</span>
+              </button>
+              <p class="contact-disclosure" id="contact-disclosure" hidden role="status" aria-live="polite">
+                Contact details are shared privately on request. This public prototype does not publish a personal email.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="closing-signal__bottom">
+          <span>Signal to Story / V4 prototype</span>
+          <span>© 2026</span>
+          <a href="#opening-signal">Back to opening signal <span aria-hidden="true">↑</span></a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
