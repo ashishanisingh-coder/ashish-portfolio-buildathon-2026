@@ -33,7 +33,7 @@ The isolated case-study routes are:
 
 The route server uses a safe allowlist from the four registered project slugs and renders the shared template in `v5.1/projects/`. Unknown project slugs return `404`; no request path is used to select arbitrary project data.
 
-The previous route review is documented in `reports/v5.1-routes-qc.md`. The final integrated screenshots, recordings and QC package are in `reports/v5.1/integrated/` and `reports/v5.1-integrated-qc.md`.
+The previous route review is documented in `reports/v5.1-routes-qc.md`. The integrated baseline screenshots are in `reports/v5.1/integrated/`; the latest polish evidence is in `reports/v5.1/final/` and `reports/v5.1-final-qc.md`.
 
 ## Test
 
@@ -54,7 +54,7 @@ The smoke test checks the portfolio files, all four project routes and their tra
 
 - On the first viewport, watch the fixed navigation and progress track draw, the title lines reveal through masks, the editorial rules resolve and the Philips composite open from a rectangular crop.
 - Use the fixed portfolio navigation or the mobile menu to move between Opening, the four project routes and Contact. The progress marker follows document scroll continuously, while the active chapter label follows the viewport.
-- In Philips, scroll through the 1,840px scene. The same composite moves continuously between a full campaign overview, a catalogue / print and social crop, and a retail experience / format adaptations crop. The image windows wipe between compositions while the text and labels resolve with the scroll.
+- In Philips, scroll through the five-beat scene. The same composite moves continuously through the campaign opening, campaign system, catalogue, festive campaign and retail close. The image window wipes between truthful compositions while the text and labels resolve with the scroll.
 - In Contact, open the disclosure for the contact-details-on-request message. No personal email is published.
 
 ## Asset QC and limitation
@@ -63,7 +63,7 @@ The only Philips-specific approved asset available to this prototype is:
 
 `/assets/actual/philips/case-study.jpg` — 1024×1536, one composite image containing labelled panels for the overview, campaign-at-a-glance / print-social, catalogue, festive campaign, retail experience, format adaptations and takeaways.
 
-The Philips story deliberately reuses that single real image with CSS crops and object positioning. Separate high-resolution exports for the individual panels are not available in the supplied asset set, so this prototype does not invent them and does not upscale the composite beyond reasonable display sizes. The catalogue, retail and format adaptation beats remain truthful crops from the supplied composite.
+The Philips story deliberately reuses that single real image with CSS crops and object positioning. Separate high-resolution exports for the individual panels are not available in the supplied asset set, so this prototype does not invent them and does not upscale the composite beyond reasonable display sizes. The five selected beats remain truthful crops from the supplied composite.
 
 ### Case-study route asset limits
 
@@ -71,7 +71,7 @@ The new routes use only the supplied files under `/assets/actual/`:
 
 - **India in Transition** uses `cover-hero.jpg`, `big-picture.jpg`, `work-system-wide.png`, `work-system-tall.png`, `geography-map.jpg`, `synthesis-montage.jpg` and `closing-bridge.jpg` for the editorial sequence.
 - **Rotavirus** uses `cover.jpg`, `overview.jpg`, `slide-archive.jpg`, `takeaways.png` and `closing.jpg` for the information-design/public-health sequence.
-- **Philips TV & Audio** uses only `case-study.jpg`, the supplied 1024×1536 eight-panel composite. Its route reads the intact source as a strip: campaign cover, project overview, campaign at a glance, original artwork, festive campaign, retail experience, format adaptations and key takeaways.
+- **Philips TV & Audio** uses only `case-study.jpg`, the supplied 1024×1536 composite. Its route reads the intact source as a strip through five selected moments: campaign opening, campaign system, catalogue, festive campaign and retail close.
 - **Simulanis Uno** uses only `case-study.jpg`, the supplied 17-slide, 261×2048 portrait strip. It is kept at its native narrow width and scrolled as one continuous source; the route does not invent extra screenshots or stretch it into a wide hero.
 
 Project imagery transitions through flat layout, crop, clip and 2D translation only. No cards, gradients, glow, rotation, 3D treatment or hard offset shadows are introduced.

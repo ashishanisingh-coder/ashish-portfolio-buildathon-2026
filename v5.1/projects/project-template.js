@@ -128,6 +128,10 @@ function renderProject(project, projects) {
   const projectEntries = Object.values(projects || {});
   const projectIndex = Math.max(0, projectEntries.findIndex((entry) => entry.slug === project.slug));
   const navProgress = `${(((projectIndex + 1) / (projectEntries.length + 1)) * 100).toFixed(2)}%`;
+  const canonicalBase = 'https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/';
+  const canonicalUrl = `${canonicalBase}projects/${project.slug}/`;
+  const imageUrl = `${canonicalBase}${project.hero.src.slice(1)}`;
+  const description = `${project.projectName} — ${project.intro}`;
 
   return `<!doctype html>
 <html lang="en">
@@ -137,6 +141,18 @@ function renderProject(project, projects) {
     <meta name="description" content="${escapeHtml(project.projectName)} — ${escapeHtml(project.intro)}" />
     <meta name="theme-color" content="#171c1e" />
     <title>${escapeHtml(project.projectName)} — Ashish Kumar Singh</title>
+    <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Ashish Kumar Singh" />
+    <meta property="og:title" content="${escapeHtml(project.projectName)} — Ashish Kumar Singh" />
+    <meta property="og:description" content="${escapeHtml(description)}" />
+    <meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
+    <meta property="og:image" content="${escapeHtml(imageUrl)}" />
+    <meta property="og:image:alt" content="${escapeHtml(project.hero.alt)}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(project.projectName)} — Ashish Kumar Singh" />
+    <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="${escapeHtml(imageUrl)}" />
     <link rel="icon" href="/v5.1/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/v5.1/projects/project.css" />
     <script>
@@ -290,7 +306,7 @@ function renderProject(project, projects) {
               </a>
               <a href="/v5.1/">
                 <span class="project-nav__label">Return</span>
-                <strong><span aria-hidden="true">↑</span>V5.1 opening</strong>
+                <strong><span aria-hidden="true">↑</span>Portfolio home</strong>
               </a>
               <a href="${escapeHtml(project.next.href)}">
                 <span class="project-nav__label">Next</span>

@@ -13,6 +13,7 @@ const defaultBasePath = '/ashish-portfolio-buildathon-2026/';
 const defaultOutputDirectory = 'dist-v51-pages';
 const manifestFileName = 'v51-pages-manifest.json';
 const projectSlugs = ['philips', 'india', 'rotavirus', 'uno'];
+const canonicalBase = 'https://ashishanisingh-coder.github.io/ashish-portfolio-buildathon-2026/';
 
 function fail(message) {
   throw new Error(message);
@@ -87,6 +88,14 @@ function hasMetaTag(html, name, content) {
   ).test(html);
 }
 
+function hasCanonicalLink(html, href) {
+  const escapedHref = escapeRegExp(href);
+  return new RegExp(
+    `<link\\b(?=[^>]*\\brel="canonical")(?=[^>]*\\bhref="${escapedHref}")[^>]*>`,
+    'i',
+  ).test(html);
+}
+
 function expectedRoutes() {
   return ['/', ...projectSlugs.map((slug) => `/projects/${slug}/`)];
 }
@@ -114,6 +123,8 @@ function verifyInternalUrls(runtimeFiles, basePath, outputDirectory) {
   runtimeFiles.forEach((relativePath) => {
     const content = readText(relativePath);
     assert(!content.includes('/v5.1/'), `Unrewritten /v5.1/ URL in ${relativePath}`);
+    assert(!content.includes('V5.1 opening'), `Visitor-facing V5.1 wording remains in ${relativePath}`);
+    assert(!/supplied\s+(?:composite|case study)/i.test(content), `Internal supplied-asset wording remains in ${relativePath}`);
 
     collectRuntimeUrls(content).forEach((url) => {
       if (url.startsWith('#') || /^[a-z][a-z\d+.-]*:/i.test(url) || !url.startsWith('/')) return;
@@ -145,10 +156,13 @@ function verifyMetadata(homepageHtml, projectPages) {
   const expectedHomepageDescription =
     'Ashish Kumar Singh — senior presentation and visual communication design for ideas that need a clear point of entry.';
   assert(homepageHtml.includes(`<title>${expectedHomepageTitle}</title>`), 'Homepage title metadata is missing.');
+  assert(hasCanonicalLink(homepageHtml, canonicalBase), 'Homepage canonical URL is missing.');
   assert(
     hasMetaTag(homepageHtml, 'description', expectedHomepageDescription),
     'Homepage description metadata is missing.',
   );
+  assert(hasMetaTag(homepageHtml, 'twitter:card', 'summary_large_image'), 'Homepage Twitter card metadata is missing.');
+  assert(homepageHtml.includes('<meta property="og:type" content="website"'), 'Homepage Open Graph type is missing.');
 
   [homepageHtml, ...projectPages].forEach((html, index) => {
     const label = index === 0 ? 'homepage' : `project route ${projectSlugs[index - 1]}`;
@@ -167,14 +181,18 @@ function verifyMetadata(homepageHtml, projectPages) {
     const project = projectData[slug];
     const projectName = escapeHtml(project.projectName);
     const projectDescription = `${projectName} — ${escapeHtml(project.intro)}`;
+    const canonicalUrl = `${canonicalBase}projects/${slug}/`;
     assert(
       html.includes(`<title>${projectName} — Ashish Kumar Singh</title>`),
       `${slug} title metadata is missing.`,
     );
+    assert(hasCanonicalLink(html, canonicalUrl), `${slug} canonical URL is missing.`);
     assert(
       hasMetaTag(html, 'description', projectDescription),
       `${slug} description metadata is missing.`,
     );
+    assert(hasMetaTag(html, 'twitter:card', 'summary_large_image'), `${slug} Twitter card metadata is missing.`);
+    assert(html.includes('<meta property="og:type" content="article"'), `${slug} Open Graph type is missing.`);
     assert(html.includes(`<body class="project-page project-page--${slug}">`), `${slug} route marker is missing.`);
     assert(html.includes('<main id="main-content"'), `${slug} main content marker is missing.`);
   });

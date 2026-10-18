@@ -1,0 +1,76 @@
+name: Deploy V5.1 portfolio (approval required)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_v51_release:
+        description: "Confirm that the reviewed V5.1 artifact may replace the current Pages artifact"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: v51-pages-approval
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: ${{ inputs.confirm_v51_release == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out reviewed V5.1 revision
+        uses: actions/checkout@v4
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies from lockfile
+        run: npm ci --ignore-scripts
+
+      - name: Run project checks
+        run: |
+          node --check v5.1/app.js
+          node --check v5.1/serve.js
+          node --check v5.1/projects/project.js
+          node --check v5.1/projects/project-data.js
+          node --check v5.1/projects/project-template.js
+          node v5.1/test.js
+          npm test
+
+      - name: Build the V5.1 Pages artifact
+        run: npm run build:v51:pages
+        env:
+          BASE_PATH: /ashish-portfolio-buildathon-2026/
+
+      - name: Verify the V5.1 Pages artifact
+        run: npm run verify:v51:pages
+        env:
+          BASE_PATH: /ashish-portfolio-buildathon-2026/
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the V5.1 Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-v51-pages
+
+  deploy:
+    if: ${{ inputs.confirm_v51_release == true }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: v51-pages-approval
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy approved V5.1 artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

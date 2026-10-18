@@ -12,8 +12,8 @@ const projects = {
       'A multi-format retail campaign for Philips TV & Audio across catalogue, festive promotion, social media and in-store retail.',
     hero: {
       src: asset('philips', 'case-study.jpg'),
-      alt: 'Eight-panel Philips TV & Audio retail brand campaign case-study composite',
-      caption: 'Eight-panel campaign case study / composite source',
+      alt: 'Philips TV & Audio retail campaign story across catalogue, festive and retail moments',
+      caption: 'Campaign story / Philips TV & Audio',
     },
     metadata: [
       ['Focus', 'Retail brand campaign'],
@@ -24,57 +24,39 @@ const projects = {
       eyebrow: 'Philips TV & Audio / campaign sequence',
       title: 'One campaign, many touchpoints.',
       copy:
-        'The supplied composite moves from the campaign cover and overview through campaign-at-a-glance, original artwork, festive, retail, format adaptations and takeaways.',
+        'The campaign moves from its opening idea through the core system, catalogue, festive promotion, retail experience and closing takeaways.',
       kind: 'strip',
     },
     beats: [
       {
-        label: 'Campaign cover',
+        label: 'Campaign opening',
         title: 'Start with the retail campaign.',
         copy:
-          'The opening panel frames Philips TV & Audio as a retail brand campaign across print, social, retail and catalogue.',
+          'The opening frames Philips TV & Audio as a retail campaign that connects print, social, catalogue and the store.',
       },
       {
-        label: 'Project overview',
-        title: 'Bring home a richer everyday.',
-        copy:
-          'The overview panel describes a multi-format campaign for a more immersive, connected home entertainment experience.',
-      },
-      {
-        label: 'Campaign at a glance',
+        label: 'Campaign system',
         title: 'Keep every touchpoint consistent.',
         copy:
-          'The campaign-at-a-glance panel gathers catalogue, festive offers, retail POSM and social media into one system.',
+          'The campaign system brings catalogue, festive offers, retail POSM and social media into one clear visual language.',
       },
       {
-        label: 'Original artwork',
+        label: 'Catalogue',
         title: 'Let the catalogue carry the range.',
         copy:
-          'The original-artwork panel presents the Philips TV range with an aspirational catalogue layout focused on design, picture quality and viewing experience.',
+          'The catalogue presents the Philips TV range with an aspirational layout focused on design, picture quality and viewing experience.',
       },
       {
         label: 'Festive campaign',
         title: 'Make seasonal moments connect.',
         copy:
-          'The festive panel shows campaign creatives adapted for print, social and in-store use across the Philips TV & Audio range.',
+          'Festive creatives carry the campaign across print, social and in-store moments while keeping the range connected.',
       },
       {
-        label: 'Retail experience',
-        title: 'Move from communication to impact.',
+        label: 'Retail and close',
+        title: 'Carry the campaign into the room.',
         copy:
-          'The retail panel shows campaign elements adapted for wall displays, standees, danglers and shelf branding.',
-      },
-      {
-        label: 'Format adaptations',
-        title: 'Hold the story across formats.',
-        copy:
-          'The format-adaptations panel keeps the same visual language, messaging and brand experience across catalogue, social and in-store POSM.',
-      },
-      {
-        label: 'Key takeaways',
-        title: 'Close with a cohesive campaign.',
-        copy:
-          'The final panel unifies print, digital and retail touchpoints to bring Philips closer to consumers.',
+          'Retail displays, adapted formats and the closing takeaway show one campaign language travelling across touchpoints.',
       },
     ],
     closing: {
@@ -282,8 +264,8 @@ const projects = {
     intro: 'Experience design for a unified industrial training platform.',
     hero: {
       src: asset('uno', 'case-study.jpg'),
-      alt: 'Tall Simulanis Uno case-study strip showing the supplied 17-slide experience-design story',
-      caption: '17-slide case-study strip / portrait sequence',
+      alt: 'Tall Simulanis Uno experience-design story across industrial training and a unified platform',
+      caption: 'Experience-design story / portrait sequence',
       kind: 'strip',
     },
     metadata: [
@@ -301,7 +283,7 @@ const projects = {
       {
         label: 'Case-study opening',
         title: 'Begin with the experience-design frame.',
-        copy: 'The strip opens the supplied case study as one continuous portrait source.',
+        copy: 'The portrait sequence opens the experience-design story as one continuous source.',
       },
       {
         label: 'Industrial training',

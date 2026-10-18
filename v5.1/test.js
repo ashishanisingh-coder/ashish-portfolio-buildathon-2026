@@ -98,7 +98,11 @@ async function main() {
     'Rotavirus',
     'Simulanis Uno',
     'https://github.com/ashishanisingh-coder',
-    'Contact details on request',
+    'Request professional contact details',
+    'rel="canonical"',
+    'property="og:title"',
+    'property="og:url"',
+    'name="twitter:card"',
   ];
 
   for (const marker of markers) {
@@ -136,6 +140,10 @@ async function main() {
       '<main id="main-content"',
       'Portfolio navigation',
       'data-project-menu-toggle',
+      'rel="canonical"',
+      'property="og:type"',
+      'property="og:image"',
+      'name="twitter:card"',
       'data-project-sequence',
       'data-progress-readout',
       '/v5.1/projects/project.css',
