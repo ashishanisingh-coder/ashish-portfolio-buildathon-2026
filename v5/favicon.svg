@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>The Signal Deck</title>
+  <rect width="64" height="64" fill="#151a1c"/>
+  <path d="M15 17h34M15 32h22M15 47h28" stroke="#f9f8f3" stroke-width="4" stroke-linecap="square"/>
+  <circle cx="45" cy="32" r="6" fill="#ff5b2b"/>
+</svg>

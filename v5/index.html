@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="The Signal Deck — an immersive V5 portfolio prototype for a senior presentation and visual communication designer."
+    />
+    <meta name="theme-color" content="#151a1c" />
+    <title>The Signal Deck — V5 prototype</title>
+    <link rel="icon" href="/v5/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/v5/styles.css" />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <script src="/v5/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+      <div class="header-shell">
+        <a class="wordmark" href="#signal" aria-label="The Signal Deck home">
+          <span class="wordmark__name">Ashish Kumar Singh</span>
+          <span class="wordmark__role">Presentation / visual communication</span>
+        </a>
+
+        <nav class="chapter-nav" aria-label="Homepage chapters">
+          <div class="chapter-track" aria-hidden="true">
+            <span class="chapter-track__base"></span>
+            <span class="chapter-track__fill"></span>
+            <span class="chapter-track__marker"></span>
+          </div>
+          <ol class="chapter-list">
+            <li>
+              <button
+                class="chapter-button is-active"
+                type="button"
+                data-chapter-target="signal"
+                aria-current="location"
+              >
+                <span class="chapter-button__number">01</span>
+                <span class="chapter-button__label">Signal</span>
+              </button>
+            </li>
+            <li>
+              <button class="chapter-button" type="button" data-chapter-target="work">
+                <span class="chapter-button__number">02</span>
+                <span class="chapter-button__label">Work</span>
+              </button>
+            </li>
+            <li>
+              <button class="chapter-button" type="button" data-chapter-target="contact">
+                <span class="chapter-button__number">03</span>
+                <span class="chapter-button__label">Contact</span>
+              </button>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="mode-button"
+            type="button"
+            data-mode-toggle
+            aria-pressed="false"
+            aria-label="Show presentation guide mode"
+            title="Show presentation guide mode"
+          >
+            <span class="mode-button__dot" aria-hidden="true"></span>
+          </button>
+          <button
+            class="mobile-menu-button"
+            type="button"
+            data-mobile-menu-toggle
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span>Menu</span>
+            <span class="mobile-menu-button__bars" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+        <p class="mobile-menu__label">Move through the deck</p>
+        <nav aria-label="Mobile homepage chapters">
+          <ol class="mobile-chapter-list">
+            <li>
+              <button class="mobile-chapter-button is-active" type="button" data-chapter-target="signal">
+                <span>01</span><strong>Signal</strong><span aria-hidden="true">↘</span>
+              </button>
+            </li>
+            <li>
+              <button class="mobile-chapter-button" type="button" data-chapter-target="work">
+                <span>02</span><strong>Work</strong><span aria-hidden="true">↘</span>
+              </button>
+            </li>
+            <li>
+              <button class="mobile-chapter-button" type="button" data-chapter-target="contact">
+                <span>03</span><strong>Contact</strong><span aria-hidden="true">↘</span>
+              </button>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero chapter-section" id="signal" data-chapter-section aria-labelledby="hero-title">
+        <div class="hero__guide hero__guide--vertical" aria-hidden="true"></div>
+        <div class="hero__guide hero__guide--horizontal" aria-hidden="true"></div>
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="hero-kicker"><span class="hero-kicker__rule" aria-hidden="true"></span>01 / The Signal Deck</p>
+            <h1 id="hero-title" class="hero-title">
+              <span class="hero-title__line">Make the signal</span>
+              <span class="hero-title__line hero-title__line--serif">visible</span>
+              <span class="hero-title__line">enough to move.</span>
+            </h1>
+            <p class="hero-intro">
+              Senior presentation and visual communication design for ideas that need a clear point of entry.
+            </p>
+            <div class="hero-actions">
+              <a class="signal-link" href="#work">Enter the work <span aria-hidden="true">↘</span></a>
+              <span class="hero-actions__note">Three chapters / one working signal</span>
+            </div>
+          </div>
+
+          <div class="hero-stage" aria-label="Philips project material">
+            <span class="hero-stage__index" aria-hidden="true">AS / 01</span>
+            <figure class="hero-mat">
+              <span class="hero-mat__back" aria-hidden="true"></span>
+              <span class="hero-mat__sheet">
+                <img
+                  src="/assets/actual/philips/case-study.jpg"
+                  alt="Philips TV and Audio campaign case study spread"
+                />
+                <span class="hero-mat__scan" aria-hidden="true"></span>
+              </span>
+              <span class="hero-mat__crop hero-mat__crop--top" aria-hidden="true"></span>
+              <span class="hero-mat__crop hero-mat__crop--bottom" aria-hidden="true"></span>
+              <figcaption>
+                <span>Supplied project material / Philips TV &amp; Audio</span>
+                <span>01—08</span>
+              </figcaption>
+            </figure>
+            <figure class="hero-secondary">
+              <img
+                src="/assets/actual/india/cover-hero.jpg"
+                alt="India in Transition project cover"
+                loading="lazy"
+              />
+              <figcaption>Next signal / India in Transition</figcaption>
+            </figure>
+            <p class="hero-stage__note">A campaign spread held as a working surface.</p>
+          </div>
+        </div>
+        <div class="hero-footer">
+          <span><i aria-hidden="true"></i>Scroll to move through the deck</span>
+          <span>Signal / 01—03</span>
+        </div>
+      </section>
+
+      <section class="work chapter-section" id="work" data-chapter-section aria-labelledby="work-title">
+        <div class="work-intro">
+          <div class="work-intro__heading">
+            <p class="section-kicker"><span aria-hidden="true"></span>02 / Work</p>
+            <h2 id="work-title">The frame changes. <span> The signal stays.</span></h2>
+          </div>
+          <p class="work-intro__copy">
+            One Philips TV &amp; Audio campaign, read at three distances: the whole spread, the detail, then the frame that has to travel into the world.
+          </p>
+        </div>
+
+        <div class="work-scene" data-work-scene data-stage-state="spread">
+          <div class="work-scene__sticky">
+            <div class="work-story">
+              <p class="work-story__eyebrow">Philips TV &amp; Audio / campaign system</p>
+              <h3 data-stage-title>The full spread sets the room.</h3>
+              <p class="work-story__copy" data-stage-copy>
+                A supplied case-study spread that moves from room-scale image to campaign system.
+              </p>
+              <div class="work-state" aria-live="polite">
+                <span class="work-state__number" data-stage-number>01</span>
+                <span class="work-state__line" aria-hidden="true"></span>
+                <span data-stage-label>Full spread</span>
+              </div>
+            </div>
+
+            <figure class="philips-stage" aria-labelledby="philips-stage-caption">
+              <span class="philips-stage__back philips-stage__back--one" aria-hidden="true"></span>
+              <span class="philips-stage__back philips-stage__back--two" aria-hidden="true"></span>
+              <div class="philips-stage__sheet">
+                <img
+                  src="/assets/actual/philips/case-study.jpg"
+                  alt="Philips TV and Audio campaign case study spread"
+                  loading="lazy"
+                />
+                <span class="philips-stage__registration" aria-hidden="true"></span>
+              </div>
+              <span class="philips-stage__label philips-stage__label--top">Frame / <span data-stage-frame>01</span></span>
+              <figcaption id="philips-stage-caption" class="philips-stage__caption">
+                <span data-stage-caption>Full spread / campaign overview</span>
+                <span>Actual asset</span>
+              </figcaption>
+            </figure>
+
+            <aside class="project-index" aria-labelledby="project-index-title">
+              <div class="project-index__head">
+                <span id="project-index-title">Project index</span>
+                <span>01—04</span>
+              </div>
+              <ol>
+                <li class="is-active"><span>01</span><strong>Philips TV &amp; Audio</strong></li>
+                <li><span>02</span><strong>India in Transition</strong></li>
+                <li><span>03</span><strong>Rotavirus</strong></li>
+                <li><span>04</span><strong>Simulanis Uno</strong></li>
+              </ol>
+              <p class="project-index__note">Four real projects in context. Case-study routes are not part of this prototype.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact chapter-section" id="contact" data-chapter-section aria-labelledby="contact-title">
+        <div class="contact__guide contact__guide--vertical" aria-hidden="true"></div>
+        <div class="contact__topline">
+          <span>03 / Contact</span>
+          <span>Open channel / next move</span>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-heading">
+            <p class="contact-kicker"><span aria-hidden="true"></span>End frame</p>
+            <h2 id="contact-title">Give the next move <span>somewhere to land.</span></h2>
+          </div>
+          <div class="contact-copy">
+            <p>
+              For the presentation, system or visual story that needs a sharper point of entry, start with the public profile.
+            </p>
+            <div class="contact-actions">
+              <a
+                class="contact-cta"
+                href="https://github.com/ashishanisingh-coder"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open public GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <button
+                class="contact-disclosure-toggle"
+                type="button"
+                data-contact-toggle
+                aria-expanded="false"
+                aria-controls="contact-disclosure"
+              >
+                <span>Contact details on request</span>
+                <span aria-hidden="true" data-contact-symbol>+</span>
+              </button>
+              <p class="contact-disclosure" id="contact-disclosure" hidden role="status" aria-live="polite">
+                Contact details are shared privately on request. This public prototype does not publish a personal email.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-footer">
+          <span>The Signal Deck / V5 prototype</span>
+          <a href="#signal">Back to signal <span aria-hidden="true">↑</span></a>
+          <span>© 2026</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
