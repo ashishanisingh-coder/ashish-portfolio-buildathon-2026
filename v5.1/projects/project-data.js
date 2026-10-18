@@ -117,6 +117,7 @@ const projects = {
       src: asset('rotavirus', 'cover.jpg'),
       alt: 'Cover image for the Rotavirus information-design case study',
       caption: 'Cover / information design for a public-health story',
+      fit: 'contain',
     },
     metadata: [
       ['Focus', 'Information design'],
@@ -137,7 +138,7 @@ const projects = {
           {
             src: asset('rotavirus', 'overview.jpg'),
             alt: 'Project overview image from the Rotavirus case study',
-            fit: 'cover',
+            fit: 'contain',
             position: 'center',
           },
         ],
@@ -163,7 +164,7 @@ const projects = {
           {
             src: asset('rotavirus', 'takeaways.png'),
             alt: 'Key takeaways image from the Rotavirus case study',
-            fit: 'cover',
+            fit: 'contain',
             position: 'center',
           },
         ],
@@ -176,7 +177,7 @@ const projects = {
           {
             src: asset('rotavirus', 'closing.jpg'),
             alt: 'Closing image from the Rotavirus case study',
-            fit: 'cover',
+            fit: 'contain',
             position: 'center',
           },
         ],

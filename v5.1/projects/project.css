@@ -330,6 +330,11 @@ main {
   object-position: center;
 }
 
+.project-hero__image-window .project-hero__image--contain {
+  background: var(--paper-bright);
+  object-fit: contain;
+}
+
 .project-hero__image-rule {
   position: absolute;
   right: 0;
@@ -371,6 +376,11 @@ main {
   min-height: 100%;
   object-fit: cover;
   object-position: top center;
+}
+
+.project-hero--contain .project-hero__image-window {
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .project-hero__rule {
@@ -518,6 +528,10 @@ main {
   isolation: isolate;
 }
 
+.project-page--rotavirus .scene-window {
+  height: min(52svh, 34rem);
+}
+
 .scene-window__rule {
   position: absolute;
   z-index: 4;
@@ -568,6 +582,7 @@ main {
 }
 
 .scene-panel__image--contain {
+  background: var(--paper-bright);
   object-fit: contain;
 }
 
@@ -883,6 +898,11 @@ main {
     width: min(100%, 16.35rem);
   }
 
+  .project-hero--contain .project-hero__image-window {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
   .project-hero__rule {
     margin-top: 3.5rem;
   }
@@ -961,6 +981,11 @@ main {
   }
 
   .scene-window {
+    height: min(46svh, 24rem);
+    min-height: 18rem;
+  }
+
+  .project-page--rotavirus .scene-window {
     height: min(46svh, 24rem);
     min-height: 18rem;
   }

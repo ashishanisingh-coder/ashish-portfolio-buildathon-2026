@@ -94,6 +94,7 @@ function renderSceneVisual(project) {
 function renderProject(project) {
   const isStrip = project.sequence.kind === 'strip';
   const heroClass = isStrip ? ' project-hero--strip' : '';
+  const heroFitClass = project.hero.fit === 'contain' ? ' project-hero--contain' : '';
   const sequenceClass = isStrip ? ' project-sequence--strip' : '';
   const firstBeat = project.beats[0];
 
@@ -134,7 +135,7 @@ function renderProject(project) {
     </header>
 
     <main id="main-content" tabindex="-1">
-      <section class="project-hero${heroClass}" id="project-start" aria-labelledby="project-title">
+      <section class="project-hero${heroClass}${heroFitClass}" id="project-start" aria-labelledby="project-title">
         <div class="project-hero__shell">
           <div class="project-hero__copy">
             <p class="section-kicker"><span aria-hidden="true"></span>${escapeHtml(project.sectionNumber)} / ${escapeHtml(project.projectName)}</p>
@@ -148,7 +149,11 @@ function renderProject(project) {
 
           <figure class="project-hero__figure" aria-labelledby="hero-caption">
             <div class="project-hero__image-window">
-              <img src="${escapeHtml(project.hero.src)}" alt="${escapeHtml(project.hero.alt)}" />
+              <img
+                class="project-hero__image project-hero__image--${escapeHtml(project.hero.fit || 'cover')}"
+                src="${escapeHtml(project.hero.src)}"
+                alt="${escapeHtml(project.hero.alt)}"
+              />
               <span class="project-hero__image-rule" aria-hidden="true"></span>
             </div>
             <figcaption id="hero-caption">
