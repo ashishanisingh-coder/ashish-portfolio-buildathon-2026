@@ -3,9 +3,92 @@
 const asset = (project, file) => `/assets/actual/${project}/${file}`;
 
 const projects = {
+  philips: {
+    slug: 'philips',
+    sectionNumber: '01',
+    projectName: 'Philips TV & Audio',
+    title: 'Bringing home a richer everyday.',
+    intro:
+      'A multi-format retail campaign for Philips TV & Audio across catalogue, festive promotion, social media and in-store retail.',
+    hero: {
+      src: asset('philips', 'case-study.jpg'),
+      alt: 'Eight-panel Philips TV & Audio retail brand campaign case-study composite',
+      caption: 'Eight-panel campaign case study / composite source',
+    },
+    metadata: [
+      ['Focus', 'Retail brand campaign'],
+      ['Brand', 'Philips TV & Audio'],
+      ['Touchpoints', 'Catalogue / festive / social / retail'],
+    ],
+    sequence: {
+      eyebrow: 'Philips TV & Audio / campaign sequence',
+      title: 'One campaign, many touchpoints.',
+      copy:
+        'The supplied composite moves from the campaign cover and overview through campaign-at-a-glance, original artwork, festive, retail, format adaptations and takeaways.',
+      kind: 'strip',
+    },
+    beats: [
+      {
+        label: 'Campaign cover',
+        title: 'Start with the retail campaign.',
+        copy:
+          'The opening panel frames Philips TV & Audio as a retail brand campaign across print, social, retail and catalogue.',
+      },
+      {
+        label: 'Project overview',
+        title: 'Bring home a richer everyday.',
+        copy:
+          'The overview panel describes a multi-format campaign for a more immersive, connected home entertainment experience.',
+      },
+      {
+        label: 'Campaign at a glance',
+        title: 'Keep every touchpoint consistent.',
+        copy:
+          'The campaign-at-a-glance panel gathers catalogue, festive offers, retail POSM and social media into one system.',
+      },
+      {
+        label: 'Original artwork',
+        title: 'Let the catalogue carry the range.',
+        copy:
+          'The original-artwork panel presents the Philips TV range with an aspirational catalogue layout focused on design, picture quality and viewing experience.',
+      },
+      {
+        label: 'Festive campaign',
+        title: 'Make seasonal moments connect.',
+        copy:
+          'The festive panel shows campaign creatives adapted for print, social and in-store use across the Philips TV & Audio range.',
+      },
+      {
+        label: 'Retail experience',
+        title: 'Move from communication to impact.',
+        copy:
+          'The retail panel shows campaign elements adapted for wall displays, standees, danglers and shelf branding.',
+      },
+      {
+        label: 'Format adaptations',
+        title: 'Hold the story across formats.',
+        copy:
+          'The format-adaptations panel keeps the same visual language, messaging and brand experience across catalogue, social and in-store POSM.',
+      },
+      {
+        label: 'Key takeaways',
+        title: 'Close with a cohesive campaign.',
+        copy:
+          'The final panel unifies print, digital and retail touchpoints to bring Philips closer to consumers.',
+      },
+    ],
+    closing: {
+      title: 'A connected system can travel.',
+      copy:
+        'Philips TV & Audio carries one campaign idea across catalogue, festive promotion, social media and retail touchpoints.',
+    },
+    previous: { label: 'Simulanis Uno', href: '/v5.1/projects/uno/' },
+    next: { label: 'India in Transition', href: '/v5.1/projects/india/' },
+  },
+
   india: {
     slug: 'india',
-    sectionNumber: '01',
+    sectionNumber: '02',
     projectName: 'India in Transition',
     title: 'Six ways of seeing a country in transition.',
     intro:
@@ -102,13 +185,13 @@ const projects = {
       title: 'A clear sequence makes room for complexity.',
       copy: 'India in Transition turns a wide subject into an editorial route that can be entered, followed and remembered.',
     },
-    previous: { label: 'V5.1 opening', href: '/v5.1/' },
+    previous: { label: 'Philips TV & Audio', href: '/v5.1/projects/philips/' },
     next: { label: 'Rotavirus', href: '/v5.1/projects/rotavirus/' },
   },
 
   rotavirus: {
     slug: 'rotavirus',
-    sectionNumber: '02',
+    sectionNumber: '03',
     projectName: 'Rotavirus',
     title: 'A public-health story built for attention.',
     intro:
@@ -193,7 +276,7 @@ const projects = {
 
   uno: {
     slug: 'uno',
-    sectionNumber: '03',
+    sectionNumber: '04',
     projectName: 'Simulanis Uno',
     title: 'Industrial training for a safer, smarter tomorrow.',
     intro: 'Experience design for a unified industrial training platform.',
@@ -241,7 +324,7 @@ const projects = {
       copy: 'Simulanis Uno follows the portrait sequence through experience design, industrial training and a unified platform.',
     },
     previous: { label: 'Rotavirus', href: '/v5.1/projects/rotavirus/' },
-    next: { label: 'V5.1 opening', href: '/v5.1/' },
+    next: { label: 'Philips TV & Audio', href: '/v5.1/projects/philips/' },
   },
 };
 

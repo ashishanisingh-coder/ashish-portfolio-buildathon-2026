@@ -39,7 +39,7 @@
   const chapterLabels = {
     opening: '01 / Opening',
     philips: '02 / Philips',
-    contact: '03 / Contact',
+    contact: '06 / Contact',
   };
 
   let currentSectionId = sections[0]?.id || 'opening';
@@ -47,6 +47,10 @@
   let scrollFrame = 0;
   let captionTimer = 0;
   let copyTimer = 0;
+  let philipsSceneMetrics = null;
+  let philipsSceneMetricsDirty = true;
+  let philipsSceneProgress = null;
+  const philipsBeatValues = {};
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -163,12 +167,29 @@
     }, motionQuery.matches ? 0 : 110);
   }
 
-  function updatePhilipsScene() {
+  function refreshPhilipsSceneMetrics() {
     if (!philipsScene) return;
     const bounds = philipsScene.getBoundingClientRect();
-    const travel = Math.max(1, philipsScene.offsetHeight - window.innerHeight);
-    const progress = clamp(-bounds.top / travel, 0, 1);
-    philipsScene.style.setProperty('--scene-progress', progress.toFixed(4));
+    philipsSceneMetrics = {
+      start: bounds.top + window.scrollY,
+      travel: Math.max(1, philipsScene.offsetHeight - window.innerHeight),
+    };
+    philipsSceneMetricsDirty = false;
+  }
+
+  function updatePhilipsScene() {
+    if (!philipsScene) return;
+    if (!philipsSceneMetrics || philipsSceneMetricsDirty) refreshPhilipsSceneMetrics();
+    if (!philipsSceneMetrics) return;
+
+    const progress = clamp(
+      (window.scrollY - philipsSceneMetrics.start) / philipsSceneMetrics.travel,
+      0,
+      1,
+    );
+    const progressValue = progress.toFixed(4);
+    if (progressValue === philipsSceneProgress) return;
+    philipsSceneProgress = progressValue;
 
     const transition = smoothStep((progress - 0.04) / 0.46);
     const finish = smoothStep((progress - 0.5) / 0.46);
@@ -177,7 +198,10 @@
       : { overview: 0, catalogue: 1 - finish, retail: finish };
 
     beatOrder.forEach((beat) => {
-      philipsScene.style.setProperty(`--beat-${beat}`, weights[beat].toFixed(4));
+      const value = weights[beat].toFixed(4);
+      if (philipsBeatValues[beat] === value) return;
+      philipsBeatValues[beat] = value;
+      philipsScene.style.setProperty(`--beat-${beat}`, value);
     });
 
     const nextBeat = beatOrder[weights.catalogue > weights.overview && weights.catalogue >= weights.retail ? 1 : weights.retail > weights.overview ? 2 : 0];
@@ -197,9 +221,18 @@
     updatePhilipsScene();
   }
 
-  function onScrollOrResize() {
+  function scheduleViewUpdate() {
     if (scrollFrame) return;
     scrollFrame = window.requestAnimationFrame(updateView);
+  }
+
+  function onScroll() {
+    scheduleViewUpdate();
+  }
+
+  function onResize() {
+    philipsSceneMetricsDirty = true;
+    scheduleViewUpdate();
   }
 
   function closeMobileMenu({ restoreFocus = false } = {}) {
@@ -215,7 +248,7 @@
   const mobileMenu = document.querySelector('[data-mobile-menu]');
   const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
 
-  chapterButtons.forEach((button) => {
+  chapterButtons.filter((button) => button.tagName === 'BUTTON').forEach((button) => {
     button.addEventListener('click', () => {
       const menuWasOpen = Boolean(mobileMenu && !mobileMenu.hidden);
       setActiveChapter(button.dataset.chapterTarget);
@@ -249,9 +282,9 @@
     if (contactSymbol) contactSymbol.textContent = isOpen ? '+' : '−';
   });
 
-  window.addEventListener('scroll', onScrollOrResize, { passive: true });
-  window.addEventListener('resize', onScrollOrResize, { passive: true });
-  motionQuery.addEventListener?.('change', onScrollOrResize);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
+  motionQuery.addEventListener?.('change', scheduleViewUpdate);
 
   setReady();
   setActiveChapter(currentSectionId);

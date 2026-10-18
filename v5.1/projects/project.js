@@ -2,6 +2,7 @@
   'use strict';
 
   const root = document.documentElement;
+  const body = document.body;
   const sequence = document.querySelector('[data-project-sequence]');
   const sequenceScroll = sequence?.querySelector('.sequence-scroll');
   const panels = [...document.querySelectorAll('[data-scene-panel]')];
@@ -22,6 +23,8 @@
   const sceneCaption = document.querySelector('[data-scene-caption]');
   let frame = 0;
   let currentBeat = 0;
+  const projectMenu = document.querySelector('[data-project-mobile-menu]');
+  const projectMenuToggle = document.querySelector('[data-project-menu-toggle]');
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -123,10 +126,37 @@
     }
   }
 
+  function closeProjectMenu({ restoreFocus = false } = {}) {
+    if (!projectMenu || !projectMenuToggle) return;
+    projectMenu.hidden = true;
+    projectMenuToggle.setAttribute('aria-expanded', 'false');
+    body.classList.remove('project-menu-open');
+    if (restoreFocus) projectMenuToggle.focus();
+  }
+
   function requestUpdate() {
     if (frame) return;
     frame = window.requestAnimationFrame(updateView);
   }
+
+  projectMenuToggle?.addEventListener('click', () => {
+    if (!projectMenu) return;
+    const shouldOpen = projectMenu.hidden;
+    projectMenu.hidden = !shouldOpen;
+    projectMenuToggle.setAttribute('aria-expanded', String(shouldOpen));
+    body.classList.toggle('project-menu-open', shouldOpen);
+    if (shouldOpen) projectMenu.querySelector('a')?.focus();
+  });
+
+  projectMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => closeProjectMenu());
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && projectMenu && !projectMenu.hidden) {
+      closeProjectMenu({ restoreFocus: true });
+    }
+  });
 
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate, { passive: true });

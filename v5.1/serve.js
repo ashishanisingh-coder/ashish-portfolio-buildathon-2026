@@ -10,6 +10,7 @@ const { renderProject } = require('./projects/project-template');
 const ROOT = path.resolve(__dirname, '..');
 const V51_ROOT = path.join(ROOT, 'v5.1');
 const PORT = Number(process.env.PORT || 4184);
+const projectSlugs = new Set(Object.keys(projectData));
 
 const contentTypes = {
   '.css': 'text/css; charset=utf-8',
@@ -97,14 +98,12 @@ const server = http.createServer((request, response) => {
   const projectMatch = parsedUrl.pathname.match(/^\/v5\.1\/projects\/([a-z0-9-]+)\/?$/);
   if (projectMatch) {
     const projectSlug = projectMatch[1];
-    const project = Object.prototype.hasOwnProperty.call(projectData, projectSlug)
-      ? projectData[projectSlug]
-      : null;
+    const project = projectSlugs.has(projectSlug) ? projectData[projectSlug] : null;
     if (!project) {
       respondNotFound(response);
       return;
     }
-    sendHtml(response, renderProject(project), request.method);
+    sendHtml(response, renderProject(project, projectData), request.method);
     return;
   }
 

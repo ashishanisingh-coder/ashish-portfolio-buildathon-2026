@@ -91,12 +91,43 @@ function renderSceneVisual(project) {
           </div>`;
 }
 
-function renderProject(project) {
+const projectLabels = {
+  philips: 'Philips',
+  india: 'India',
+  rotavirus: 'Rotavirus',
+  uno: 'Uno',
+};
+
+function renderPortfolioNavigation(projects, project, mobile = false) {
+  const items = [
+    { slug: 'opening', label: 'Opening', href: '/v5.1/' },
+    ...Object.values(projects || {}).map((entry) => ({
+      slug: entry.slug,
+      label: projectLabels[entry.slug] || entry.projectName,
+      fullLabel: entry.projectName,
+      href: `/v5.1/projects/${entry.slug}/`,
+    })),
+  ];
+  const className = mobile ? 'project-header__mobile-link' : 'project-header__nav-link';
+  return items
+    .map((item) => {
+      const active = item.slug === project.slug;
+      const ariaCurrent = active ? ' aria-current="page"' : '';
+      const ariaLabel = item.fullLabel ? ` aria-label="Open ${escapeHtml(item.fullLabel)} case study"` : '';
+      return `<a class="${className}${active ? ' is-active' : ''}" href="${item.href}"${ariaCurrent}${ariaLabel}>${escapeHtml(item.label)}</a>`;
+    })
+    .join('');
+}
+
+function renderProject(project, projects) {
   const isStrip = project.sequence.kind === 'strip';
   const heroClass = isStrip ? ' project-hero--strip' : '';
   const heroFitClass = project.hero.fit === 'contain' ? ' project-hero--contain' : '';
   const sequenceClass = isStrip ? ' project-sequence--strip' : '';
   const firstBeat = project.beats[0];
+  const projectEntries = Object.values(projects || {});
+  const projectIndex = Math.max(0, projectEntries.findIndex((entry) => entry.slug === project.slug));
+  const navProgress = `${(((projectIndex + 1) / (projectEntries.length + 1)) * 100).toFixed(2)}%`;
 
   return `<!doctype html>
 <html lang="en">
@@ -118,20 +149,53 @@ function renderProject(project) {
 
     <header class="project-header" data-project-header>
       <div class="project-header__shell">
-        <a class="project-header__back" href="/v5.1/">
-          <span aria-hidden="true">↙</span>
-          <span>Back to work</span>
+        <a class="project-header__brand" href="/v5.1/" aria-label="Ashish Kumar Singh home">
+          <span class="project-header__brand-name">Ashish Kumar Singh</span>
+          <span class="project-header__brand-role">Presentation / visual communication</span>
         </a>
-        <a class="project-header__name" href="#project-start">${escapeHtml(project.projectName)}</a>
-        <div class="project-header__progress" aria-label="Reading progress">
-          <span class="project-header__progress-label">Scroll</span>
-          <span class="project-progress" aria-hidden="true">
-            <span class="project-progress__base"></span>
-            <span class="project-progress__fill"></span>
-          </span>
-          <span class="project-header__progress-value" data-progress-readout>0%</span>
+        <nav class="project-header__nav" aria-label="Portfolio navigation">
+          <div class="project-header__nav-track" aria-hidden="true">
+            <span></span>
+            <span style="width: ${navProgress}"></span>
+          </div>
+          <div class="project-header__nav-list">
+            ${renderPortfolioNavigation(projects, project)}
+          </div>
+        </nav>
+        <div class="project-header__actions">
+          <div class="project-header__progress" aria-label="Reading progress">
+            <span class="project-header__progress-label">Scroll</span>
+            <span class="project-progress" aria-hidden="true">
+              <span class="project-progress__base"></span>
+              <span class="project-progress__fill"></span>
+            </span>
+            <span class="project-header__progress-value" data-progress-readout>0%</span>
+          </div>
+          <button
+            class="project-header__menu-button"
+            type="button"
+            data-project-menu-toggle
+            aria-expanded="false"
+            aria-controls="project-mobile-menu"
+          >
+            <span>Menu</span>
+            <span class="project-header__menu-bars" aria-hidden="true"><i></i><i></i></span>
+          </button>
         </div>
       </div>
+      <nav class="project-header__mobile-menu" id="project-mobile-menu" data-project-mobile-menu hidden aria-label="Mobile portfolio navigation">
+        <div class="project-header__mobile-status">
+          <span>Current project</span>
+          <strong>${escapeHtml(project.projectName)}</strong>
+        </div>
+        <div class="project-header__mobile-progress" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="project-header__mobile-links">
+          ${renderPortfolioNavigation(projects, project, true)}
+        </div>
+      </nav>
     </header>
 
     <main id="main-content" tabindex="-1">

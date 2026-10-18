@@ -7,6 +7,8 @@ const routes = [
   '/v5.1/app.js',
   '/v5.1/favicon.svg',
   '/assets/actual/philips/case-study.jpg',
+  '/v5.1/projects/philips',
+  '/v5.1/projects/philips/',
   '/v5.1/projects/india',
   '/v5.1/projects/india/',
   '/v5.1/projects/rotavirus',
@@ -20,6 +22,13 @@ const routes = [
 const origin = `http://127.0.0.1:${process.env.PORT || 4184}`;
 
 const projectRoutes = {
+  philips: {
+    paths: ['/v5.1/projects/philips', '/v5.1/projects/philips/'],
+    name: 'Philips TV & Audio',
+    assets: ['/assets/actual/philips/case-study.jpg'],
+    previous: '/v5.1/projects/uno/',
+    next: '/v5.1/projects/india/',
+  },
   india: {
     paths: ['/v5.1/projects/india', '/v5.1/projects/india/'],
     name: 'India in Transition',
@@ -32,6 +41,8 @@ const projectRoutes = {
       '/assets/actual/india/synthesis-montage.jpg',
       '/assets/actual/india/closing-bridge.jpg',
     ],
+    previous: '/v5.1/projects/philips/',
+    next: '/v5.1/projects/rotavirus/',
   },
   rotavirus: {
     paths: ['/v5.1/projects/rotavirus', '/v5.1/projects/rotavirus/'],
@@ -43,11 +54,15 @@ const projectRoutes = {
       '/assets/actual/rotavirus/takeaways.png',
       '/assets/actual/rotavirus/closing.jpg',
     ],
+    previous: '/v5.1/projects/india/',
+    next: '/v5.1/projects/uno/',
   },
   uno: {
     paths: ['/v5.1/projects/uno', '/v5.1/projects/uno/'],
     name: 'Simulanis Uno',
     assets: ['/assets/actual/uno/case-study.jpg'],
+    previous: '/v5.1/projects/rotavirus/',
+    next: '/v5.1/projects/philips/',
   },
 };
 
@@ -70,6 +85,10 @@ async function main() {
     'data-chapter-target="opening"',
     'data-chapter-target="philips"',
     'data-chapter-target="contact"',
+    'href="/v5.1/projects/philips/"',
+    'href="/v5.1/projects/india/"',
+    'href="/v5.1/projects/rotavirus/"',
+    'href="/v5.1/projects/uno/"',
     'data-philips-scene',
     'data-beat-image="overview"',
     'data-beat-image="catalogue"',
@@ -110,17 +129,29 @@ async function main() {
 
   for (const project of Object.values(projectRoutes)) {
     const html = await (await fetch(`${origin}${project.paths[0]}`)).text();
-    if (!html.includes(project.name)) throw new Error(`Project route is missing name: ${project.name}`);
+    const renderedName = project.name.replaceAll('&', '&amp;');
+    if (!html.includes(renderedName)) throw new Error(`Project route is missing name: ${project.name}`);
     for (const marker of [
       'Skip to content',
       '<main id="main-content"',
-      'Back to work',
+      'Portfolio navigation',
+      'data-project-menu-toggle',
       'data-project-sequence',
       'data-progress-readout',
       '/v5.1/projects/project.css',
       '/v5.1/projects/project.js',
     ]) {
       if (!html.includes(marker)) throw new Error(`${project.name} route is missing marker: ${marker}`);
+    }
+
+    for (const [label, href] of [
+      ['previous', project.previous],
+      ['next', project.next],
+      ['return', '/v5.1/'],
+    ]) {
+      if (!html.includes(`href="${href}"`)) {
+        throw new Error(`${project.name} route is missing ${label} link: ${href}`);
+      }
     }
 
     for (const asset of project.assets) {

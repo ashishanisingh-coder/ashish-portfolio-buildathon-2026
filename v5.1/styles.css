@@ -751,6 +751,14 @@ h3 {
   line-height: 1.15;
 }
 
+.project-index li > a {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: baseline;
+  color: inherit;
+}
+
 .project-index li span {
   color: var(--muted);
   font-size: 0.75rem;
@@ -758,6 +766,19 @@ h3 {
 
 .project-index li strong {
   font-weight: 500;
+}
+
+.project-index li > a > span:last-child {
+  color: #ba4324;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: opacity 180ms ease, transform 220ms var(--ease-entry);
+}
+
+.project-index li:hover > a > span:last-child,
+.project-index li:focus-within > a > span:last-child,
+.project-index li.is-active > a > span:last-child {
+  opacity: 1;
 }
 
 .project-index li.is-active {
@@ -960,10 +981,6 @@ html.is-ready .hero-visual__window {
   animation: image-reveal 1050ms var(--ease-entry) 520ms both;
 }
 
-html.is-ready .hero-visual__window img {
-  animation: planar-settle 1050ms var(--ease-entry) 520ms both;
-}
-
 html.is-ready .hero-visual__rule {
   animation: rule-draw 620ms var(--ease-entry) 1.18s both;
 }
@@ -1056,15 +1073,6 @@ html.is-ready .hero-footer {
   }
 }
 
-@keyframes planar-settle {
-  from {
-    transform: translateX(-1.5%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
 @keyframes rule-draw {
   from {
     transform: scaleX(0);
@@ -1123,8 +1131,29 @@ html.is-ready .hero-footer {
   }
 
   .header-shell {
+    position: relative;
     grid-template-columns: 1fr auto;
     padding: 0 1.1rem;
+  }
+
+  .header-shell::before,
+  .header-shell::after {
+    position: absolute;
+    right: 1.1rem;
+    bottom: 0;
+    left: 1.1rem;
+    height: 1px;
+    content: "";
+  }
+
+  .header-shell::before {
+    background: rgba(241, 239, 233, 0.3);
+  }
+
+  .header-shell::after {
+    right: auto;
+    width: var(--document-progress);
+    background: var(--signal);
   }
 
   .chapter-nav,
