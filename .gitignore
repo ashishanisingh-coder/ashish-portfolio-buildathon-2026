@@ -3,6 +3,7 @@
 .playwright-cli/
 node_modules/
 dist/
+dist-v51-pages/
 reports/qa/
 reports/v4/references/
 npm-debug.log*

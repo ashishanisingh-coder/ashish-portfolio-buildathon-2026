@@ -5,9 +5,11 @@
   "description": "Reproducible source and rendered mockups for Ashish Kumar Singh's Fold portfolio direction.",
   "scripts": {
     "build:static": "node scripts/build-static.js",
+    "build:v51:pages": "node scripts/build-v51-pages.js",
     "render": "node mockups/render-fold-v3.js",
     "test": "node mockups/test.js",
-    "serve": "node mockups/serve.js"
+    "serve": "node mockups/serve.js",
+    "verify:v51:pages": "node scripts/verify-v51-pages.js"
   },
   "engines": {
     "node": "24.20.0"

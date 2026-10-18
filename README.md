@@ -59,6 +59,17 @@ The static site lives in:
 
 The project index now opens same-system case-study routes at `/projects/philips`, `/projects/india`, `/projects/rotavirus`, and `/projects/uno`. All project imagery is loaded from `assets/actual/`. The public build keeps contact details unpublished and exposes an honest request-state CTA without inventing an email address.
 
+## V5.1 production handoff build
+
+The approved V5.1 experience has a separate, non-deploying GitHub Pages artifact builder. It does not modify `site/`, `v5/`, the existing Pages workflow or the currently live V3 website:
+
+```bash
+npm run build:v51:pages
+npm run verify:v51:pages
+```
+
+This creates the ignored `dist-v51-pages/` artifact for the repository base path `/ashish-portfolio-buildathon-2026/`, with a root V5.1 homepage and directory-index routes for Philips, India in Transition, Rotavirus and Simulanis Uno. The full handoff plan and verification evidence are in `reports/v5.1-production-handoff.md`.
+
 ## Docker
 
 ```bash
