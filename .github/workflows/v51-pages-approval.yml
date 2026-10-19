@@ -35,8 +35,25 @@ jobs:
       - name: Install dependencies from lockfile
         run: npm ci --ignore-scripts
 
-      - name: Run project checks
+      - name: Start V5.1 server and run project checks
         run: |
+          set -euo pipefail
+          server_log="$RUNNER_TEMP/v51-server.log"
+          node v5.1/serve.js >"$server_log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4184/v5.1/ >/dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+              cat "$server_log"
+              exit 1
+            fi
+            sleep 1
+          done
+
           node --check v5.1/app.js
           node --check v5.1/serve.js
           node --check v5.1/projects/project.js

@@ -1,9 +1,13 @@
 name: Deploy portfolio to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      confirm_v3_release:
+        description: "Confirm that the legacy V3 artifact may replace the current Pages artifact"
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -16,6 +20,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ inputs.confirm_v3_release == true }}
     runs-on: ubuntu-latest
 
     steps:
@@ -48,6 +53,7 @@ jobs:
           path: dist
 
   deploy:
+    if: ${{ inputs.confirm_v3_release == true }}
     needs: build
     runs-on: ubuntu-latest
     environment:
