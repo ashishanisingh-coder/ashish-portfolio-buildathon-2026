@@ -102,7 +102,7 @@ The default base path is `/ashish-portfolio-buildathon-2026/`. For a different r
 BASE_PATH=/your-repository-name/ npm run build:static
 ```
 
-The legacy `.github/workflows/pages.yml` workflow is now manual-only and requires the explicit `confirm_v3_release=true` input. It builds the existing V3 `dist/` artifact and is intended only for an intentional V3 rollback; it no longer runs on pushes to `main`. The V5.1 workflow is `.github/workflows/v51-pages-approval.yml`, which is manual-only, requires `confirm_v51_release=true`, starts the V5.1 server before its smoke test, builds `dist-v51-pages/`, verifies the artifact, uploads it and waits at the `v51-pages-approval` environment before deployment. In the repository's **Settings → Pages**, select **GitHub Actions** as the build and deployment source once. The published project-site URL is:
+The legacy `.github/workflows/pages.yml` workflow is now manual-only and requires the explicit `confirm_v3_release=true` input. It builds the existing V3 `dist/` artifact and is intended only for an intentional V3 rollback; it no longer runs on pushes to `main`. The V5.1 workflow is `.github/workflows/v51-pages-approval.yml`, which is manual-only, requires `confirm_v51_release=true`, `release_ref=v5.1-flat-art-direction` and the exact approved `release_commit`, starts the V5.1 server before its smoke test, builds `dist-v51-pages/`, verifies the artifact, uploads it and waits at the `v51-pages-approval` environment before deployment. In the repository's **Settings → Pages**, select **GitHub Actions** as the build and deployment source once. The published project-site URL is:
 
 ```text
 https://<owner>.github.io/ashish-portfolio-buildathon-2026/
