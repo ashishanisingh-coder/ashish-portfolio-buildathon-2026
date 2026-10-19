@@ -96,6 +96,22 @@ function hasCanonicalLink(html, href) {
   ).test(html);
 }
 
+function metaContentsByProperty(html, property) {
+  const escapedProperty = escapeRegExp(property);
+  return [...html.matchAll(new RegExp(
+    `<meta\\b(?=[^>]*\\bproperty="${escapedProperty}")(?=[^>]*\\bcontent="([^"]+)")[^>]*>`,
+    'gi',
+  ))].map((match) => match[1]);
+}
+
+function assertOpenGraphImage(html, expectedUrl, label) {
+  const values = metaContentsByProperty(html, 'og:image');
+  assert(values.length === 1, `${label} must contain exactly one og:image tag.`);
+  assert(values[0] === expectedUrl, `${label} og:image URL is incorrect: ${values[0]}`);
+  const basePathCount = values[0].split(canonicalBase).length - 1;
+  assert(basePathCount === 1, `${label} og:image must contain the repository base path once; found ${basePathCount}.`);
+}
+
 function expectedRoutes() {
   return ['/', ...projectSlugs.map((slug) => `/projects/${slug}/`)];
 }
@@ -161,6 +177,11 @@ function verifyMetadata(homepageHtml, projectPages) {
     hasMetaTag(homepageHtml, 'description', expectedHomepageDescription),
     'Homepage description metadata is missing.',
   );
+  assertOpenGraphImage(
+    homepageHtml,
+    `${canonicalBase}assets/actual/philips/case-study.jpg`,
+    'Homepage',
+  );
   assert(hasMetaTag(homepageHtml, 'twitter:card', 'summary_large_image'), 'Homepage Twitter card metadata is missing.');
   assert(homepageHtml.includes('<meta property="og:type" content="website"'), 'Homepage Open Graph type is missing.');
 
@@ -190,6 +211,11 @@ function verifyMetadata(homepageHtml, projectPages) {
     assert(
       hasMetaTag(html, 'description', projectDescription),
       `${slug} description metadata is missing.`,
+    );
+    assertOpenGraphImage(
+      html,
+      `${canonicalBase}${project.hero.src.slice(1)}`,
+      `${slug} route`,
     );
     assert(hasMetaTag(html, 'twitter:card', 'summary_large_image'), `${slug} Twitter card metadata is missing.`);
     assert(html.includes('<meta property="og:type" content="article"'), `${slug} Open Graph type is missing.`);

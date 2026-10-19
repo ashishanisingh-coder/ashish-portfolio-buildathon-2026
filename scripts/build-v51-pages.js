@@ -81,8 +81,8 @@ function copyFile(source, destination, label) {
 }
 
 function rewriteRuntimeUrls(content, basePath) {
-  return content.replace(/\/(v5\.1|assets)\//g, (_match, segment) => (
-    segment === 'v5.1' ? basePath : `${basePath}assets/`
+  return content.replace(/(^|["'(=\s])\/(v5\.1|assets)\//g, (_match, prefix, segment) => (
+    `${prefix}${segment === 'v5.1' ? basePath : `${basePath}assets/`}`
   ));
 }
 
