@@ -1,0 +1,113 @@
+name: Deploy V5.1 portfolio (approval required)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_v51_release:
+        description: "Confirm that the reviewed V5.1 artifact may replace the current Pages artifact"
+        required: true
+        type: boolean
+        default: false
+      release_ref:
+        description: "Approved V5.1 release branch or tag"
+        required: true
+        type: string
+        default: v5.1-flat-art-direction
+      release_commit:
+        description: "Exact approved V5.1 release commit"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: v51-pages-approval
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: ${{ inputs.confirm_v51_release == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out reviewed V5.1 revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies from lockfile
+        run: npm ci --ignore-scripts
+
+      - name: Confirm reviewed release commit
+        env:
+          EXPECTED_RELEASE_COMMIT: ${{ inputs.release_commit }}
+        run: |
+          set -euo pipefail
+          actual_release_commit="$(git rev-parse HEAD)"
+          printf 'Release ref: %s\nRelease commit: %s\n' "${{ inputs.release_ref }}" "$actual_release_commit"
+          test "$actual_release_commit" = "$EXPECTED_RELEASE_COMMIT"
+
+      - name: Start V5.1 server and run project checks
+        run: |
+          set -euo pipefail
+          server_log="$RUNNER_TEMP/v51-server.log"
+          node v5.1/serve.js >"$server_log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4184/v5.1/ >/dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+              cat "$server_log"
+              exit 1
+            fi
+            sleep 1
+          done
+
+          node --check v5.1/app.js
+          node --check v5.1/serve.js
+          node --check v5.1/projects/project.js
+          node --check v5.1/projects/project-data.js
+          node --check v5.1/projects/project-template.js
+          node v5.1/test.js
+          npm test
+
+      - name: Build the V5.1 Pages artifact
+        run: npm run build:v51:pages
+        env:
+          BASE_PATH: /ashish-portfolio-buildathon-2026/
+
+      - name: Verify the V5.1 Pages artifact
+        run: npm run verify:v51:pages
+        env:
+          BASE_PATH: /ashish-portfolio-buildathon-2026/
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the V5.1 Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-v51-pages
+
+  deploy:
+    if: ${{ inputs.confirm_v51_release == true }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: v51-pages-approval
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy approved V5.1 artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
