@@ -61,7 +61,7 @@ The project index now opens same-system case-study routes at `/projects/philips`
 
 ## V5.1 production handoff build
 
-The approved V5.1 experience has a separate, non-deploying GitHub Pages artifact builder. It does not modify `site/`, `v5/`, the existing Pages workflow or the currently live V3 website:
+The approved V5.1 experience has a separate, non-deploying GitHub Pages artifact builder. It does not modify `site/`, `v5/`, the legacy V3 source or the currently live V3 website:
 
 ```bash
 npm run build:v51:pages
@@ -102,13 +102,15 @@ The default base path is `/ashish-portfolio-buildathon-2026/`. For a different r
 BASE_PATH=/your-repository-name/ npm run build:static
 ```
 
-The `.github/workflows/pages.yml` workflow runs the offline checks, builds `dist/`, uploads it as a Pages artifact, and deploys it on pushes to `main` or from **Actions → Deploy portfolio to GitHub Pages → Run workflow**. In the repository's **Settings → Pages**, select **GitHub Actions** as the build and deployment source once. The published project-site URL is:
+The legacy `.github/workflows/pages.yml` workflow is now manual-only and requires the explicit `confirm_v3_release=true` input. It builds the existing V3 `dist/` artifact and is intended only for an intentional V3 rollback; it no longer runs on pushes to `main`. The V5.1 workflow is `.github/workflows/v51-pages-approval.yml`, which is manual-only, requires `confirm_v51_release=true`, starts the V5.1 server before its smoke test, builds `dist-v51-pages/`, verifies the artifact, uploads it and waits at the `v51-pages-approval` environment before deployment. In the repository's **Settings → Pages**, select **GitHub Actions** as the build and deployment source once. The published project-site URL is:
 
 ```text
 https://<owner>.github.io/ashish-portfolio-buildathon-2026/
 ```
 
 GitHub Pages serves static files only. The generated directory indexes make the four known case-study URLs work without a server rewrite, but arbitrary unknown routes and Node server behavior are not available there. The Pages REST API exposes site creation, but that endpoint requires repository-admin, maintainer, or **manage GitHub Pages settings** permission; the workflow token cannot grant that permission. An owner or administrator must enable the GitHub Actions Pages source once in repository settings (or provision it separately with an appropriately privileged token).
+
+Do not run the legacy V3 workflow after approving a V5.1 deployment unless an intentional V3 rollback is required. Both workflows deploy to the same Pages site; the V3 workflow's manual confirmation is the only remaining path that can replace V5.1 with the older artifact.
 
 ### Container host
 
