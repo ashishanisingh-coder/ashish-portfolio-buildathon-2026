@@ -8,6 +8,15 @@ on:
         required: true
         type: boolean
         default: false
+      release_ref:
+        description: "Approved V5.1 release branch or tag"
+        required: true
+        type: string
+        default: v5.1-flat-art-direction
+      release_commit:
+        description: "Exact approved V5.1 release commit"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -25,6 +34,8 @@ jobs:
     steps:
       - name: Check out reviewed V5.1 revision
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
 
       - name: Set up Node 24
         uses: actions/setup-node@v4
@@ -34,6 +45,15 @@ jobs:
 
       - name: Install dependencies from lockfile
         run: npm ci --ignore-scripts
+
+      - name: Confirm reviewed release commit
+        env:
+          EXPECTED_RELEASE_COMMIT: ${{ inputs.release_commit }}
+        run: |
+          set -euo pipefail
+          actual_release_commit="$(git rev-parse HEAD)"
+          printf 'Release ref: %s\nRelease commit: %s\n' "${{ inputs.release_ref }}" "$actual_release_commit"
+          test "$actual_release_commit" = "$EXPECTED_RELEASE_COMMIT"
 
       - name: Start V5.1 server and run project checks
         run: |
